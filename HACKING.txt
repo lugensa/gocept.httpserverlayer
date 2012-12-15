@@ -1,0 +1,21 @@
+=================================
+Developing gocept.httpserverlayer
+=================================
+
+:Author:
+    `gocept <http://gocept.com/>`_ <mail@gocept.com>
+
+:Online documentation:
+    http://packages.python.org/gocept.httpserverlayer/
+
+:PyPI page:
+    http://pypi.python.org/pypi/gocept.httpserverlayer/
+
+:Issue tracker:
+    https://projects.gocept.com/projects/gocept-httpserverlayer/
+
+:Source code:
+    https://bitbucket.org/gocept/gocept.httpserverlayer/
+
+:Current change log:
+    https://bitbucket.org/gocept/gocept.httpserverlayer/raw/tip/CHANGES.txt
