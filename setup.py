@@ -34,6 +34,9 @@ setup(
             'zope.schema',
             'ZODB3',
         ],
+        'zope2': [  # Zope2>=2.12 is eggified
+            'Zope2',
+        ],
     },
 
     entry_points={
