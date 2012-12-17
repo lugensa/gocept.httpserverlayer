@@ -19,6 +19,21 @@ setup(
     extras_require={
         'test': [
         ],
+        'zopeapptesting': [
+            'zope.app.server',
+            'zope.app.testing',
+            'zope.app.wsgi',
+            'zope.server',
+        ],
+        'test_zopeapptesting': [
+            'zope.app.appsetup',
+            'zope.app.zcmlfiles',
+            'zope.securitypolicy',
+            'zope.testing >= 3.8.0',
+            'zope.interface',
+            'zope.schema',
+            'ZODB3',
+        ],
     },
 
     entry_points={
@@ -34,6 +49,8 @@ setup(
 License :: OSI Approved :: Zope Public License
 Programming Language :: Python
 Programming Language :: Python :: 2
+Programming Language :: Python :: 2.4
+Programming Language :: Python :: 2.5
 Programming Language :: Python :: 2.6
 Programming Language :: Python :: 2.7
 Programming Language :: Python :: 2 :: Only
