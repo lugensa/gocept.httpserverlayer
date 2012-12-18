@@ -10,7 +10,7 @@ ZSERVER = plone.testing.z2.ZServer()
 class Layer(plone.testing.Layer):
 
     host = 'localhost'
-    port = 0
+    port = 0  # choose automatically
 
     defaultBases = (ZSERVER, plone.testing.z2.FUNCTIONAL_TESTING)
 
