@@ -10,7 +10,7 @@ Products.PloneTestCase.PloneTestCase.setupPloneSite(id='plone')
 
 HTTP_LAYER = gocept.httpserverlayer.zope2.Layer(
     name='HTTPLayer',
-    bases=(PloneSiteLayer, gocept.httpserverlayer.zope2.testing.Layer))
+    bases=(PloneSiteLayer, gocept.httpserverlayer.zope2.testing.ZCML_LAYER))
 
 
 class PloneTests(gocept.httpserverlayer.tests.isolation.IsolationTests,
