@@ -3,32 +3,31 @@ import Testing.ZopeTestCase
 import Zope2
 import gocept.httpserverlayer.tests.isolation
 import gocept.httpserverlayer.zope2
+import plone.testing
 
-
-class Layer(object):
-
-    @classmethod
-    def setUp(cls):
-        Testing.ZopeTestCase.installProduct('Five')
-        Products.Five.zcml.load_config(
-            'configure.zcml', package=gocept.httpserverlayer.tests.isolation)
-
-
-class FiveLayer(object):
-
-    @classmethod
-    def setUp(cls):
-        Products.Five.zcml.load_config(
-            'configure.zcml', package=Products.Five)
 
 try:
     import Testing.ZopeTestCase.layer
-    HTTP_LAYER = gocept.httpserverlayer.zope2.Layer(
-        name='HTTPLayer212',
-        bases=(Testing.ZopeTestCase.layer.ZopeLiteLayer, FiveLayer, Layer))
+    bases = (Testing.ZopeTestCase.layer.ZopeLiteLayer,)
 except ImportError:
-    HTTP_LAYER = gocept.httpserverlayer.zope2.Layer(
-        name='HTTPLayer210', bases=(Layer,))
+    bases = ()
+
+
+class ZCMLLayer(plone.testing.Layer):
+
+    defaultBases = bases
+
+    def setUp(self):
+        Testing.ZopeTestCase.installProduct('Five')
+        Products.Five.zcml.load_config(
+            'configure.zcml', package=Products.Five)
+        Products.Five.zcml.load_config(
+            'configure.zcml', package=gocept.httpserverlayer.tests.isolation)
+
+ZCML_LAYER = ZCMLLayer()
+
+HTTP_LAYER = gocept.httpserverlayer.zope2.Layer(
+    name='HTTPLayer', bases=(ZCML_LAYER,))
 
 
 def get_current_db():
