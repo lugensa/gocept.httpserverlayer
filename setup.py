@@ -44,6 +44,14 @@ setup(
             'Plone',
             'PILwoTK',
         ],
+        'plonetesting': [
+            'plone.testing[z2]',
+        ],
+        'test_plonetesting': [
+            'Plone',
+            'PILwoTK',
+            'plone.app.testing',
+        ],
     },
 
     entry_points={
