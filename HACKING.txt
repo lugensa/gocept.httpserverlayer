@@ -19,3 +19,16 @@ Developing gocept.httpserverlayer
 
 :Current change log:
     https://bitbucket.org/gocept/gocept.httpserverlayer/raw/tip/CHANGES.txt
+
+
+buildout configuration
+======================
+
+gocept.httpserverlayer integrates with quite a lot of different web frameworks,
+so there are quite a lot of buildout configurations for this package, so we are
+able to run our tests against all the different software versions we integrate
+with. These configurations reside in the ``flavours/`` directory, and you can
+employ one by editing ``buildout.cfg`` and extending it::
+
+    [buildout]
+    extends = flavours/MY_FLAVOUR.cfg
