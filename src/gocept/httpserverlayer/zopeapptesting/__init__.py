@@ -10,7 +10,7 @@ import zope.app.wsgi
 
 class Layer(plone.testing.Layer):
 
-    host = 'localhost'  # XXX not used
+    host = 'localhost'
     port = 0  # choose automatically
 
     def setUp(self):
@@ -18,7 +18,8 @@ class Layer(plone.testing.Layer):
         task_dispatcher.setThreadCount(1)
         db = zope.app.testing.functional.FunctionalTestSetup().db
         self.http = zope.app.server.wsgi.http.create(
-            'WSGI-HTTP', task_dispatcher, db, port=self.port)
+            'WSGI-HTTP', task_dispatcher, db,
+            ip=self.host, port=self.port)
         self.thread = threading.Thread(target=self.run_server)
         self.thread.setDaemon(True)
         self.thread.start()
