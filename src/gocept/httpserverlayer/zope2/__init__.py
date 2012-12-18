@@ -13,7 +13,7 @@ import time
 class Layer(plone.testing.Layer):
 
     host = 'localhost'
-    port = 0
+    port = 0  # choose automatically
 
     def setUp(self):
         # adapted from Testing.ZopeTestCase.utils.startZServer() to make
