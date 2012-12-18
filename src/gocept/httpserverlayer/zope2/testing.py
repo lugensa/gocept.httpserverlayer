@@ -1,4 +1,5 @@
 import Products.Five.zcml
+import Testing.ZopeTestCase
 import Zope2
 import gocept.httpserverlayer.tests.isolation
 import gocept.httpserverlayer.zope2
@@ -8,6 +9,7 @@ class Layer(object):
 
     @classmethod
     def setUp(cls):
+        Testing.ZopeTestCase.installProduct('Five')
         Products.Five.zcml.load_config(
             'configure.zcml', package=gocept.httpserverlayer.tests.isolation)
 

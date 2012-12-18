@@ -1,10 +1,6 @@
-import Testing.ZopeTestCase
 import gocept.httpserverlayer.tests.isolation
 import gocept.httpserverlayer.zope2
 import gocept.httpserverlayer.zope2.testing
-
-
-Testing.ZopeTestCase.installProduct('Five')
 
 
 class Zope212Tests(gocept.httpserverlayer.tests.isolation.IsolationTests,
