@@ -9,7 +9,7 @@ def project_path(*names):
 
 setup(
     name='gocept.httpserverlayer',
-    version='1.0',
+    version='1.1.dev0',
 
     install_requires=[
         'distribute',
