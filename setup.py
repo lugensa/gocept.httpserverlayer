@@ -42,20 +42,20 @@ setup(
             'zope.app.appsetup',
             'ZODB3',
         ],
-        'zope2': [
+        'zope2testcase': [
             'Zope2',  # Zope2>=2.12 is eggified
         ],
-        'plone': [
+        'plonetestcase': [
             'Products.PloneTestCase',
         ],
-        'test_plone': [
+        'test_plonetestcase': [
             'Plone',
             'PILwoTK',
         ],
-        'plonetesting': [
+        'plonetestingz2': [
             'plone.testing[z2]',
         ],
-        'test_plonetesting': [
+        'test_plonetestingz2': [
             'Plone',
             'PILwoTK',
             'plone.app.testing',
