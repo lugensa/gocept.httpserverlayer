@@ -22,6 +22,8 @@ This package is compatible with Python versions 2.4 - 2.7.
 .. _`zope.testrunner`: http://pypi.python.org/pypi/zope.testrunner
 .. _`plone.testing`: http://pypi.python.org/pypi/plone.testing
 
+.. contents::
+
 
 WSGI
 ====
@@ -99,19 +101,51 @@ functional tests::
             self.assertIn('Hello world', r.read())
 
 
-Zope3 / ZTK (zope.app.wsgi)
-===========================
+Zope3 / ZTK / Grok (zope.app.wsgi)
+==================================
 
-If your ZTK application uses ``zope.app.wsgi.testlayer``, see `Grok`_ for
-integrating ``gocept.httpserverlayer``.
+Requires ``gocept.httpserverlayer[zopeappwsgi]``
 
+If your ZTK application uses ``zope.app.wsgi.testlayer`` (which is the
+recommended test setup for Grok, for example), you can use
+``gocept.httpserverlayer.zopeappwsgi.Layer`` to create a WSGI app that
+integrates ZODB isolation, and ``gocept.httpserverlayer.wsgi.Layer`` to provide
+the actual HTTP server. No special TestCase is required, ``unittest.TestCase``
+is enough.
 
-Grok
-====
+The ``zopeappwsgi.Layer`` expects to find the current ZODB in the plone.testing
+resource ``zodbDB`` (which is used by ``plone.testing.zodb.EMPTY_ZODB``), or
+you can inherit and override ``get_current_zodb``. Here's an example setup for
+Grok (which uses ``zope.app.appsetup.testlayer.ZODBLayer``)::
 
-Requires ``gocept.httpserverlayer[grok]``.
+    import gocept.httpserverlayer.wsgi
+    import gocept.httpserverlayer.zopeappwsgi
+    import unittest
+    import zope.app.appsetup.testlayer
 
-XXX writeme
+    ZODB_LAYER = zope.app.appsetup.testlayer.ZODBLayer(
+        gocept.httpserverlayer.zopeappwsgi, 'testing.zcml')
+
+    class WSGILayer(gocept.httpserverlayer.zopeappwsgi.Layer):
+
+        defaultBases = (ZODB_LAYER,)
+
+        def get_current_zodb(self):
+            return ZODB_LAYER.db
+
+    WSGI_LAYER = WSGILayer()
+
+    HTTP_LAYER = gocept.httpserverlayer.wsgi.Layer(
+        name='HTTPLayer', bases=(WSGI_LAYER,))
+
+    class GrokExample(unittest.TestCase):
+
+        layer = HTTP_LAYER
+
+        def test(self):
+            r = urllib.urlopen('http://%s/' % self.layer['http_address'])
+            self.assertIn('Hello world', r.read())
+
 
 
 Zope 2 (ZopeTestCase)
@@ -193,7 +227,7 @@ This test layer builds on ``Products.PloneTestCase.laye.PloneSiteLayer``::
             self.assertIn('Hello world', r.read())
 
 
-Zope 2 / Plone with plone.testing
+Zope 2 / Plone (plone.testing.z2)
 =================================
 
 Requires ``gocept.httpserverlayer[plonetesting]``.
