@@ -34,6 +34,14 @@ setup(
             'zope.schema',
             'ZODB3',
         ],
+        'zopeappwsgi': [
+            'zope.app.wsgi',
+        ],
+        'test_zopeappwsgi': [
+            'grok',
+            'zope.app.appsetup',
+            'ZODB3',
+        ],
         'zope2': [
             'Zope2',  # Zope2>=2.12 is eggified
         ],
