@@ -2,7 +2,8 @@
 Change log for gocept.httpserverlayer
 =====================================
 
-0.1 (unreleased)
+
+1.0 (unreleased)
 ================
 
-initial release
+initial release (extracted from gocept.selenium-1.0)
