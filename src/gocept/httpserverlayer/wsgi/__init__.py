@@ -19,6 +19,10 @@ class Layer(plone.testing.Layer):
     port = 0  # choose automatically
     request_handler_class = LogWSGIRequestHandler
 
+    def __init__(self, *args, **kw):
+        super(Layer, self).__init__(*args, **kw)
+        self.wsgi_app = None
+
     @property
     def wsgi_app(self):
         return self.get('wsgi_app', self._wsgi_app)
