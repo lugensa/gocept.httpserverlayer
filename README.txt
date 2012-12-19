@@ -70,7 +70,7 @@ Framework integration
 gocept.httpserverlayer also provides integration with several web frameworks.
 Different frameworks require different dependencies; this is handled via
 setuptools extras of gocept.httpserverlayer (e.g. for Grok integration you need
-to require ``gocept.httpserverlayer[grok]``).
+to require ``gocept.httpserverlayer[zopeappwsgi]``).
 
 Most flavours require the usage of a specialised ``TestCase`` in addition to
 the test layer.
@@ -151,7 +151,7 @@ Grok (which uses ``zope.app.appsetup.testlayer.ZODBLayer``)::
 Zope 2 (ZopeTestCase)
 =====================
 
-Requires ``gocept.httpserverlayer[zope2]``
+Requires ``gocept.httpserverlayer[zope2testcase]``
 
 This test layer builds on ``Testing.ZopeTestCase.layer.ZopeLiteLayer``
 (or nothing at all, when using Zope2<2.12)::
@@ -205,7 +205,7 @@ application: ``gocept.httpserverlayer.wsgi.FixupMiddleware``.
 Plone (ZopeTestCase)
 ====================
 
-Requires ``gocept.httpserverlayer[plone]``.
+Requires ``gocept.httpserverlayer[plonetestcase]``.
 
 This test layer builds on ``Products.PloneTestCase.laye.PloneSiteLayer``::
 
@@ -230,7 +230,7 @@ This test layer builds on ``Products.PloneTestCase.laye.PloneSiteLayer``::
 Zope 2 / Plone (plone.testing.z2)
 =================================
 
-Requires ``gocept.httpserverlayer[plonetesting]``.
+Requires ``gocept.httpserverlayer[plonetestingz2]``.
 
 gocept.httpserverlayer provides a ``plone.testing.Layer`` at
 ``gocept.httpserverlayer.plonetesting.HTTP_SERVER`` that you can mix and match

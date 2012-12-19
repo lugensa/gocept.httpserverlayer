@@ -2,7 +2,7 @@ import Products.Five.zcml
 import Testing.ZopeTestCase
 import Zope2
 import gocept.httpserverlayer.tests.isolation
-import gocept.httpserverlayer.zope2
+import gocept.httpserverlayer.zope2testcase
 import plone.testing
 
 
@@ -26,7 +26,7 @@ class ZCMLLayer(plone.testing.Layer):
 
 ZCML_LAYER = ZCMLLayer()
 
-HTTP_LAYER = gocept.httpserverlayer.zope2.Layer(
+HTTP_LAYER = gocept.httpserverlayer.zope2testcase.Layer(
     name='HTTPLayer', bases=(ZCML_LAYER,))
 
 

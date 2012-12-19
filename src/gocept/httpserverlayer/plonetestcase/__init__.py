@@ -1,8 +1,8 @@
 import Products.PloneTestCase.PloneTestCase
-import gocept.httpserverlayer.zope2
+import gocept.httpserverlayer.zope2testcase
 
 
-class TestCase(gocept.httpserverlayer.zope2.SandboxPatch,
+class TestCase(gocept.httpserverlayer.zope2testcase.SandboxPatch,
                Products.PloneTestCase.PloneTestCase.FunctionalTestCase):
 
     def getRootFolder(self):
