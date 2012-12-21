@@ -15,7 +15,7 @@ HTTP_LAYER = gocept.httpserverlayer.zope2testcase.Layer(
 
 
 class PloneTests(gocept.httpserverlayer.tests.isolation.IsolationTests,
-                 gocept.httpserverlayer.plone.TestCase):
+                 gocept.httpserverlayer.plonetestcase.TestCase):
 
     layer = HTTP_LAYER
 
