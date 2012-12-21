@@ -15,7 +15,7 @@ if sys.version_info < (2, 5):
 
 setup(
     name='gocept.httpserverlayer',
-    version='1.1.dev0',
+    version='1.0.1',
 
     install_requires=[
         'distribute',
