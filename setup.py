@@ -1,10 +1,16 @@
 from setuptools import setup, find_packages
 import glob
 import os.path
+import sys
 
 
 def project_path(*names):
     return os.path.join(os.path.dirname(__file__), *names)
+
+
+wsgi_requires = []
+if sys.version_info < (2, 5):
+    wsgi_requires = ['wsgiref']
 
 
 setup(
@@ -14,7 +20,7 @@ setup(
     install_requires=[
         'distribute',
         'plone.testing',
-    ],
+    ] + wsgi_requires,
 
     extras_require={
         'test': [

@@ -9,6 +9,8 @@ Change log for gocept.httpserverlayer
 - Avoid the property.setter spelling in the wsgi layer's code for Python 2.5
   compatibility.
 
+- Conditionally require wsgiref to make the wsgi layer work with Python 2.4.
+
 
 1.0 (2012-12-19)
 ================
