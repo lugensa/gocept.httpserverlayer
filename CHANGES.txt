@@ -11,6 +11,8 @@ Change log for gocept.httpserverlayer
 
 - Conditionally require wsgiref to make the wsgi layer work with Python 2.4.
 
+- Fixed an import in the plonetestcase layer's tests.
+
 
 1.0 (2012-12-19)
 ================
