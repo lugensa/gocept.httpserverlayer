@@ -6,7 +6,8 @@ Change log for gocept.httpserverlayer
 1.1 (unreleased)
 ================
 
-- Nothing changed yet.
+- Avoid the property.setter spelling in the wsgi layer's code for Python 2.5
+  compatibility.
 
 
 1.0 (2012-12-19)
