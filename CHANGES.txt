@@ -6,7 +6,8 @@ Change log for gocept.httpserverlayer
 1.1 (unreleased)
 ================
 
-- Nothing changed yet.
+- Add ``custom.Layer`` that uses a BaseHTTPServer with a custom RequestHandler,
+  and ``static.Layer`` that server the contents of a directory.
 
 
 1.0.1 (2012-12-21)

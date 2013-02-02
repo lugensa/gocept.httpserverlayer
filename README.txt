@@ -64,6 +64,86 @@ You can also have a base layer provide the WSGI callable (in the
         name='HTTPLayer', bases=(WSGI_LAYER,))
 
 
+Static files
+============
+
+This test layer serves up the contents of a directory::
+
+    import gocept.httpserverlayer.static
+    import pkg_resources
+    import unittest
+
+    HTTP_LAYER = gocept.httpserverlayer.static.Layer(
+        pkg_resources.resource_filename('my.package.tests', 'fixtures'))
+
+    class DirecoryExample(unittest.TestCase):
+
+        layer = HTTP_LAYER
+
+        def test_something(self):
+            r = urllib.urlopen('http://%s/index' % self.layer['http_address'])
+            self.assertIn('Hello world', r.read())
+
+If you don't pass in a directory, a temporary directory will be created/removed
+automatically. The directory is provided in the ``documentroot`` resource.
+For convenience, a layer instance is already provided as ``STATIC_FILES``::
+
+    import gocept.httpserverlayer.static
+    import os.path
+    import unittest
+
+    HTTP_LAYER = gocept.httpserverlayer.static.STATIC_FILES
+
+    class TemporaryExample(unittest.TestCase):
+
+        layer = HTTP_LAYER
+
+        def test_something(self):
+            open(os.path.join(self.testlayer['documentroot'], 'index'), 'w')\
+            .write('Hello World!')
+            r = urllib.urlopen('http://%s/index' % self.layer['http_address'])
+            self.assertIn('Hello world', r.read())
+
+
+Custom request handler
+======================
+
+This test layer allows you to provide your own HTTP request handler for very
+fine-grained control::
+
+    import gocept.httpserverlayer.custom
+    import unittest
+
+    class RequestHandler(gocept.httpserverlayer.custom.RequestHandler):
+
+        response_code = 200
+        response_body = ''
+        posts_received = []
+
+        def do_POST(self):
+            length = int(self.headers['content-length'])
+            self.posts_received.append(dict(
+                path=self.path,
+                data=self.rfile.read(length),
+                headers=self.headers,
+            ))
+            self.send_response(self.response_code)
+            self.end_headers()
+            self.wfile.write(self.response_body)
+
+    HTTP_LAYER = gocept.httpserverlayer.custom.Layer(RequestHandler)
+
+    class POSTExample(unittest.TestCase):
+
+        layer = HTTP_LAYER
+
+        def test_something(self):
+            urllib.urlopen('http://%s/' % self.layer['http_address'],
+                urllib.urlencode({'foo': 'bar'}))
+            self.assertEqual(
+                'foo=bar', self.layer['request_handler'].posts_received[0]['data'])
+
+
 Framework integration
 =====================
 
