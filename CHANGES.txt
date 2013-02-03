@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.1 (unreleased)
+1.1 (2013-02-03)
 ================
 
 - Add ``custom.Layer`` that uses a BaseHTTPServer with a custom RequestHandler,
