@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.2 (unreleased)
+1.2 (2013-02-06)
 ================
 
 - Fixed tests run on MacOS.
