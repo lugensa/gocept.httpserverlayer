@@ -1,16 +1,10 @@
 from setuptools import setup, find_packages
 import glob
 import os.path
-import sys
 
 
 def project_path(*names):
     return os.path.join(os.path.dirname(__file__), *names)
-
-
-wsgi_requires = []
-if sys.version_info < (2, 5):
-    wsgi_requires = ['wsgiref']
 
 
 setup(
@@ -20,7 +14,7 @@ setup(
     install_requires=[
         'distribute',
         'plone.testing',
-    ] + wsgi_requires,
+    ],
 
     extras_require={
         'test': [
@@ -81,8 +75,6 @@ setup(
 License :: OSI Approved :: Zope Public License
 Programming Language :: Python
 Programming Language :: Python :: 2
-Programming Language :: Python :: 2.4
-Programming Language :: Python :: 2.5
 Programming Language :: Python :: 2.6
 Programming Language :: Python :: 2.7
 Programming Language :: Python :: 2 :: Only

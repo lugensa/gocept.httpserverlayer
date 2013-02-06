@@ -16,7 +16,7 @@ and exposes the following resources (accessible in your test case as
 :http_address: ``hostname:port``, convenient to use in URLs
    (e.g. ``'http://user:password@%s/path' % self.layer['http_address']``)
 
-This package is compatible with Python versions 2.4 - 2.7.
+This package is compatible with Python versions 2.6 - 2.7.
 
 .. _`test layers`: http://pypi.python.org/pypi/plone.testing#layers
 .. _`zope.testrunner`: http://pypi.python.org/pypi/zope.testrunner
@@ -225,45 +225,6 @@ Grok (which uses ``zope.app.appsetup.testlayer.ZODBLayer``)::
         def test(self):
             r = urllib.urlopen('http://%s/' % self.layer['http_address'])
             self.assertIn('Hello world', r.read())
-
-
-
-Zope 2 (ZopeTestCase)
-=====================
-
-Requires ``gocept.httpserverlayer[zope2testcase]``
-
-This test layer builds on ``Testing.ZopeTestCase.layer.ZopeLiteLayer``
-(or nothing at all, when using Zope2<2.12)::
-
-    import Products.Five.zcml
-    import Testing.ZopeTestCase
-    import gocept.httpserverlayer.zope2
-    import plone.testing
-
-    class ZCMLLayer(plone.testing.Layer):
-
-        def setUp(cls):
-            Testing.ZopeTestCase.installProduct('Five')
-            Products.Five.zcml.load_config(
-                'configure.zcml', package=Products.Five)
-            Products.Five.zcml.load_config(
-                'configure.zcml', package=mypackage)
-
-    ZCML_LAYER = ZCMLLayer()
-
-    HTTP_LAYER = gocept.httpserverlayer.zope2.Layer(
-        name='HTTPLayer',
-        bases=(Testing.ZopeTestCase.layer.ZopeLiteLayer, ZCML_LAYER,))
-
-    class Zope2Example(gocept.httpserverlayer.zope2.TestCase):
-
-        layer = HTTP_LAYER
-
-        def test(self):
-            r = urllib.urlopen('http://%s/' % self.layer['http_address'])
-            self.assertIn('Hello world', r.read())
-
 
 
 Zope 2 via WSGI
