@@ -13,8 +13,10 @@ class TestStaticFiles(unittest.TestCase):
     def tearDown(self):
         self.testlayer.tearDown()
 
-    def test_documentroot(self):
-        self.assertTrue(self.testlayer['documentroot'].startswith('/tmp'))
+    def test_documentroot_is_in_a_tempdir(self):
+        import tempfile
+        self.assertTrue(self.testlayer['documentroot'].startswith(
+            tempfile.tempdir))
 
     def test_documentroot_initially_empty(self):
         documentroot = self.testlayer['documentroot']
