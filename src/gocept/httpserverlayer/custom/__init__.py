@@ -2,36 +2,6 @@ import BaseHTTPServer
 import threading
 import time
 import plone.testing
-import urllib2
-
-
-class HTTPServer(BaseHTTPServer.HTTPServer):
-
-    _continue = True
-
-    def __init__(self, *args):
-        BaseHTTPServer.HTTPServer.__init__(self, *args)
-        self.errors = []
-
-    def handle_error(self, request, client_address):
-        self.errors.append((request, client_address))
-
-    def serve_until_shutdown(self):
-        while self._continue:
-            self.handle_request()
-
-    def shutdown(self):
-        self._continue = False
-        # We fire a last request at the server in order to take it out of the
-        # while loop in `self.serve_until_shutdown`.
-        try:
-            urllib2.urlopen(
-                'http://%s:%s/tearDown' % self.server_address, timeout=1)
-        except urllib2.URLError:
-            # If the server is already shut down, we receive a socket error,
-            # which we ignore.
-            pass
-        self.server_close()
 
 
 class Layer(plone.testing.Layer):
@@ -45,10 +15,10 @@ class Layer(plone.testing.Layer):
 
     def setUp(self):
         self['request_handler'] = self.request_handler
-        self['httpd'] = HTTPServer(
+        self['httpd'] = BaseHTTPServer.HTTPServer(
             (self.host, self.port), self.request_handler)
         self.thread = threading.Thread(
-            target=self['httpd'].serve_until_shutdown)
+            target=self['httpd'].serve_forever)
         self.thread.daemon = True
         self.thread.start()
         # Wait as it sometimes takes a while to get the server started.
