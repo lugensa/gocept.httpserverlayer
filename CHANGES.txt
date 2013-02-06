@@ -8,6 +8,9 @@ Change log for gocept.httpserverlayer
 
 - Fixed tests run on MacOS.
 
+- Use the `server_address` instead of `server_name` of `HTTPServer` to be
+  compatible with MacOS.
+
 
 1.1 (2013-02-03)
 ================

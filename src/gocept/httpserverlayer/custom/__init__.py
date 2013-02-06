@@ -26,8 +26,7 @@ class HTTPServer(BaseHTTPServer.HTTPServer):
         # while loop in `self.serve_until_shutdown`.
         try:
             urllib2.urlopen(
-                'http://%s:%s/tearDown' % (self.server_name, self.server_port),
-                timeout=1)
+                'http://%s:%s/tearDown' % self.server_address, timeout=1)
         except urllib2.URLError:
             # If the server is already shut down, we receive a socket error,
             # which we ignore.
