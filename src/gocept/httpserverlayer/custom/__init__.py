@@ -35,9 +35,6 @@ class Layer(plone.testing.Layer):
         del self['request_handler']
         del self['httpd']
 
-    def testTearDown(self):
-        self['httpd'].errors[:] = []
-
 
 class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     """Handler for testing which does not log to STDOUT."""

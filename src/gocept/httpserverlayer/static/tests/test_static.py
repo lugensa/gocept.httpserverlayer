@@ -51,3 +51,15 @@ class TestStaticFilesShutdown(unittest.TestCase):
         self.assertTrue(layer.thread.isAlive())
         layer.tearDown()
         self.assertFalse(layer.get('httpd'))
+
+
+
+class TestStaticLayerInAction(unittest.TestCase):
+
+    layer = gocept.httpserverlayer.static.STATIC_FILES
+
+    def test_should_return_files(self):
+        open(os.path.join(self.layer['documentroot'], 'index'), 'w')\
+        .write('Hello World!')
+        r = urllib2.urlopen('http://%s/index' % self.layer['http_address'])
+        self.assertIn('Hello World', r.read())
