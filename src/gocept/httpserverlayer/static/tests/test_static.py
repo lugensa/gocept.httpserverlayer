@@ -62,4 +62,4 @@ class TestStaticLayerInAction(unittest.TestCase):
         open(os.path.join(self.layer['documentroot'], 'index'), 'w')\
         .write('Hello World!')
         r = urllib2.urlopen('http://%s/index' % self.layer['http_address'])
-        self.assertIn('Hello World', r.read())
+        self.assertTrue('Hello World' in r.read())
