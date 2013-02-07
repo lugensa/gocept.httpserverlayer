@@ -3,8 +3,8 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.3 (unreleased)
-================
+1.2.1 (2013-02-07)
+==================
 
 - Fix custom layer test tear down.
 
