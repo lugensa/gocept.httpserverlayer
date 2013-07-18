@@ -12,7 +12,7 @@ setup(
     version='1.2.2.dev0',
 
     install_requires=[
-        'distribute',
+        'setuptools',
         'plone.testing',
     ],
 
