@@ -6,7 +6,7 @@ Change log for gocept.httpserverlayer
 1.2.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Replace dependency on ``distribute`` with ``setuptools``, since the projects have merged.
 
 
 1.2.1 (2013-02-07)
