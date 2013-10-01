@@ -40,6 +40,6 @@ class WSGITest(unittest.TestCase):
     layer = EXAMPLE_LAYER
 
     def test_http_works(self):
-        self.assertTrue(self.layer.thread.isAlive)
+        self.assertTrue(self.layer['httpd_thread'].isAlive)
         r = urllib.urlopen('http://%s/' % self.layer['http_address'])
         self.assertIn('Hello world', r.read())

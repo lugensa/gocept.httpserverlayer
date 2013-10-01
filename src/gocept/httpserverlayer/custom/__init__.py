@@ -17,10 +17,10 @@ class Layer(plone.testing.Layer):
         self['request_handler'] = self.request_handler
         self['httpd'] = BaseHTTPServer.HTTPServer(
             (self.host, self.port), self.request_handler)
-        self.thread = threading.Thread(
+        self['httpd_thread'] = threading.Thread(
             target=self['httpd'].serve_forever)
-        self.thread.daemon = True
-        self.thread.start()
+        self['httpd_thread'].daemon = True
+        self['httpd_thread'].start()
         # Wait as it sometimes takes a while to get the server started.
         # XXX this is a little kludgy
         time.sleep(0.001)
@@ -31,9 +31,10 @@ class Layer(plone.testing.Layer):
 
     def tearDown(self):
         self['httpd'].shutdown()
-        self.thread.join()
+        self['httpd_thread'].join()
         del self['request_handler']
         del self['httpd']
+        del self['httpd_thread']
         del self['http_host']
         del self['http_port']
         del self['http_address']

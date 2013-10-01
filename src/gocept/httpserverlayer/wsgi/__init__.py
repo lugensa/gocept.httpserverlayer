@@ -32,40 +32,42 @@ class Layer(plone.testing.Layer):
     wsgi_app = property(_get_wsgi_app, _set_wsgi_app)
 
     def setUp(self):
-        self.http = WSGIServer((self.host, self.port),
+        self['httpd'] = WSGIServer((self.host, self.port),
                                self.request_handler_class)
-        self.port = self.http.server_port
+        self.port = self['httpd'].server_port
         self['http_host'] = self.host
         self['http_port'] = self.port
         self['http_address'] = '%s:%s' % (self.host, self.port)
-        self.http.set_app(self.wsgi_app)
-        self.thread = threading.Thread(target=self.serve)
-        self.thread.daemon = True
-        self.thread.start()
+        self['httpd'].set_app(self.wsgi_app)
+        self['httpd_thread'] = threading.Thread(target=self.serve)
+        self['httpd_thread'].daemon = True
+        self['httpd_thread'].start()
 
     def tearDown(self):
         self.shutdown()
-        self.thread.join(5)
-        if self.thread.isAlive():
+        self['httpd_thread'].join(5)
+        if self['httpd_thread'].isAlive():
             raise RuntimeError('WSGI server could not be shut down')
         # make the server really go away and give up the socket
-        self.http = None
+        del self['httpd']
+        del self['httpd_thread']
+
         del self['http_host']
         del self['http_port']
         del self['http_address']
 
     def serve(self):
-        if hasattr(self.http, 'shutdown'):
-            self.http.serve_forever()
+        if hasattr(self['httpd'], 'shutdown'):
+            self['httpd'].serve_forever()
         else:
             # python < 2.6
             self._running = True
             while self._running:
-                self.http.handle_request()
+                self['httpd'].handle_request()
 
     def shutdown(self):
-        if hasattr(self.http, 'shutdown'):
-            self.http.shutdown()
+        if hasattr(self['httpd'], 'shutdown'):
+            self['httpd'].shutdown()
         else:
             # python < 2.6
             self._running = False

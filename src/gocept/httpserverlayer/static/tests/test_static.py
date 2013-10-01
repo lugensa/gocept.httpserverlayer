@@ -48,10 +48,9 @@ class TestStaticFilesShutdown(unittest.TestCase):
     def test_server_startup_shutdown(self):
         layer = gocept.httpserverlayer.static.STATIC_FILES
         layer.setUp()
-        self.assertTrue(layer.thread.isAlive())
+        self.assertTrue(layer['httpd_thread'].isAlive())
         layer.tearDown()
         self.assertFalse(layer.get('httpd'))
-
 
 
 class TestStaticLayerInAction(unittest.TestCase):

@@ -17,21 +17,23 @@ class Layer(plone.testing.Layer):
         task_dispatcher = ThreadedTaskDispatcher()
         task_dispatcher.setThreadCount(1)
         db = zope.app.testing.functional.FunctionalTestSetup().db
-        self.http = zope.app.server.wsgi.http.create(
+        self['httpd'] = zope.app.server.wsgi.http.create(
             'WSGI-HTTP', task_dispatcher, db,
             ip=self.host, port=self.port)
-        self.thread = threading.Thread(target=self.run_server)
-        self.thread.setDaemon(True)
-        self.thread.start()
+        self['httpd_thread'] = threading.Thread(target=self.run_server)
+        self['httpd_thread'].setDaemon(True)
+        self['httpd_thread'].start()
         time.sleep(0.025)
-        _, self.port = self.http.socket.getsockname()
+        _, self.port = self['httpd'].socket.getsockname()
         self['http_host'] = self.host
         self['http_port'] = self.port
         self['http_address'] = '%s:%s' % (self.host, self.port)
 
     def tearDown(self):
         self.running = False
-        self.thread.join()
+        self['httpd_thread'].join()
+        del self['httpd']
+        del self['httpd_thread']
         del self['http_host']
         del self['http_port']
         del self['http_address']
@@ -40,7 +42,7 @@ class Layer(plone.testing.Layer):
         self.running = True
         while self.running:
             asyncore.poll(0.1)
-        self.http.close()
+        self['httpd'].close()
 
 
 class TestCase(zope.app.testing.functional.FunctionalTestCase):
