@@ -32,6 +32,9 @@ class Layer(plone.testing.Layer):
     def tearDown(self):
         self.running = False
         self.thread.join()
+        del self['http_host']
+        del self['http_port']
+        del self['http_address']
 
     def run_server(self):
         self.running = True

@@ -34,6 +34,9 @@ class Layer(plone.testing.Layer):
         self.thread.join()
         del self['request_handler']
         del self['httpd']
+        del self['http_host']
+        del self['http_port']
+        del self['http_address']
 
 
 class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
