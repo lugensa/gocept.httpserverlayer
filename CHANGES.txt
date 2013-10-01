@@ -6,7 +6,7 @@ Change log for gocept.httpserverlayer
 1.3.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Make HTTP server and thread objects used by layers available as a resource.
 
 
 1.3.0 (2013-07-18)
