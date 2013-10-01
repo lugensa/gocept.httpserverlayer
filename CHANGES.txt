@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.4.1 (unreleased)
+1.4.1 (2013-10-01)
 ==================
 
 - 1.4.0 was a brown-bag, let's try again.
