@@ -50,6 +50,9 @@ class Layer(plone.testing.Layer):
             raise RuntimeError('WSGI server could not be shut down')
         # make the server really go away and give up the socket
         self.http = None
+        del self['http_host']
+        del self['http_port']
+        del self['http_address']
 
     def serve(self):
         if hasattr(self.http, 'shutdown'):

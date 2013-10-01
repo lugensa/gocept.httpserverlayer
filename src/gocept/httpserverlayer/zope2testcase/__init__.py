@@ -48,6 +48,9 @@ class Layer(plone.testing.Layer):
 
     def tearDown(self):
         Lifetime.shutdown(0, fast=1)
+        del self['http_host']
+        del self['http_port']
+        del self['http_address']
 
 
 class SandboxPatch(object):

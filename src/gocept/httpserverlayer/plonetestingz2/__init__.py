@@ -25,4 +25,10 @@ class Layer(plone.testing.Layer):
         self['http_port'] = self.port
         self['http_address'] = '%s:%s' % (self.host, self.port)
 
+    def tearDown(self):
+        del self['http_host']
+        del self['http_port']
+        del self['http_address']
+
+
 HTTP_SERVER = Layer()
