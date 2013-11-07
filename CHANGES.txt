@@ -6,7 +6,9 @@ Change log for gocept.httpserverlayer
 1.4.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Make it possible to dictate the hostname for the httpserver via environment
+  variable ``GOCEPT_HTTP_APP_HOST``. You will need this if you run your tests
+  in a selenium grid on different machines.
 
 
 1.4.1 (2013-10-01)

@@ -15,7 +15,6 @@ class LogWSGIRequestHandler(WSGIRequestHandler):
 
 class Layer(plone.testing.Layer):
 
-    host = 'localhost'
     port = 0  # choose automatically
     request_handler_class = LogWSGIRequestHandler
 
@@ -30,6 +29,10 @@ class Layer(plone.testing.Layer):
         self._wsgi_app = value
 
     wsgi_app = property(_get_wsgi_app, _set_wsgi_app)
+
+    @property
+    def host(self):
+        return os.environ.get('GOCEPT_HTTP_APP_HOST', 'localhost')
 
     def setUp(self):
         self['httpd'] = WSGIServer((self.host, self.port),
