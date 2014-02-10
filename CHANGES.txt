@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.5.1 (unreleased)
+1.5.1 (2014-02-10)
 ==================
 
 - Silence "error 32: Broken pipe" errors in ``wsgi.Layer``, they just
