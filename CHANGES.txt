@@ -3,12 +3,20 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.4.2 (unreleased)
+1.5.1 (unreleased)
 ==================
 
 - Silence "error 32: Broken pipe" errors in ``wsgi.Layer``, they just
   mean the client closed the connection prematurely, which is as
   harmless as it is normal.
+
+
+1.5.0 (2013-11-07)
+==================
+
+- Make it possible to dictate the hostname for the httpserver via environment
+  variable ``GOCEPT_HTTP_APP_HOST``. You will need this if you run your tests
+  in a selenium grid on different machines.
 
 
 1.4.1 (2013-10-01)
