@@ -43,6 +43,15 @@ class Layer(plone.testing.Layer):
         self['httpd_thread'].daemon = True
         self['httpd_thread'].start()
 
+        def silent_flush(self):
+            try:
+                orig_flush(self)
+            except socket.error, e:
+                if e.args[0] != 32:
+                    raise
+        orig_flush = self['_orig_socket_flush'] = socket._fileobject.flush
+        socket._fileobject.flush = silent_flush
+
     def tearDown(self):
         self.shutdown()
         self['httpd_thread'].join(5)
@@ -55,6 +64,9 @@ class Layer(plone.testing.Layer):
         del self['http_host']
         del self['http_port']
         del self['http_address']
+
+        socket._fileobject.flush = self['_orig_socket_flush']
+        del self['_orig_socket_flush']
 
     def serve(self):
         if hasattr(self['httpd'], 'shutdown'):
