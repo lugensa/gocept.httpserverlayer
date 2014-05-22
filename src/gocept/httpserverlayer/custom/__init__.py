@@ -1,7 +1,8 @@
 import BaseHTTPServer
+import plone.testing
+import socket
 import threading
 import time
-import plone.testing
 
 
 class Layer(plone.testing.Layer):
@@ -29,6 +30,16 @@ class Layer(plone.testing.Layer):
         self['http_port'] = self.port
         self['http_address'] = '%s:%s' % (self.host, self.port)
 
+        # XXX copy&paste from gocept.httpserverlayer.wsgi
+        def silent_flush(self):
+            try:
+                orig_flush(self)
+            except socket.error, e:
+                if e.args[0] != 32:
+                    raise
+        orig_flush = self['_orig_socket_flush'] = socket._fileobject.flush
+        socket._fileobject.flush = silent_flush
+
     def tearDown(self):
         self['httpd'].shutdown()
         self['httpd_thread'].join()
@@ -38,6 +49,9 @@ class Layer(plone.testing.Layer):
         del self['http_host']
         del self['http_port']
         del self['http_address']
+
+        socket._fileobject.flush = self['_orig_socket_flush']
+        del self['_orig_socket_flush']
 
 
 class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
