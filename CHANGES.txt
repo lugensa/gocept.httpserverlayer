@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.5.2 (unreleased)
+1.5.2 (2014-05-22)
 ==================
 
 - Silence "error 32: Broken pipe" errors in ``custom.Layer``, too.
