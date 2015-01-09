@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.5.3 (unreleased)
+1.5.3 (2015-01-09)
 ==================
 
 - Don't overwrite ``self.port`` when it was 0.
