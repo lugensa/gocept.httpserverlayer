@@ -20,10 +20,10 @@ class Layer(plone.testing.Layer):
         ZSERVER.port = self.port
 
     def setUp(self):
-        _, self.port = ZSERVER.zserver.socket.getsockname()
+        _, port = ZSERVER.zserver.socket.getsockname()
         self['http_host'] = self.host
-        self['http_port'] = self.port
-        self['http_address'] = '%s:%s' % (self.host, self.port)
+        self['http_port'] = port
+        self['http_address'] = '%s:%s' % (self.host, port)
 
     def tearDown(self):
         del self['http_host']

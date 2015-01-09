@@ -36,11 +36,11 @@ class Layer(plone.testing.Layer):
 
     def setUp(self):
         self['httpd'] = WSGIServer((self.host, self.port),
-                               self.request_handler_class)
-        self.port = self['httpd'].server_port
+                                   self.request_handler_class)
+        port = self['httpd'].server_port
         self['http_host'] = self.host
-        self['http_port'] = self.port
-        self['http_address'] = '%s:%s' % (self.host, self.port)
+        self['http_port'] = port
+        self['http_address'] = '%s:%s' % (self.host, port)
         self['httpd'].set_app(self.wsgi_app)
         self['httpd_thread'] = threading.Thread(target=self.serve)
         self['httpd_thread'].daemon = True
@@ -87,7 +87,7 @@ class Layer(plone.testing.Layer):
             # python < 2.6
             self._running = False
             try:
-                urllib.urlopen('http://%s:%s/die' % (self.host, self.port))
+                urllib.urlopen('http://%s/die' % self['http_address'])
             except socket.error:
                 pass
 

@@ -24,10 +24,10 @@ class Layer(plone.testing.Layer):
         self['httpd_thread'].setDaemon(True)
         self['httpd_thread'].start()
         time.sleep(0.025)
-        _, self.port = self['httpd'].socket.getsockname()
+        _, port = self['httpd'].socket.getsockname()
         self['http_host'] = self.host
-        self['http_port'] = self.port
-        self['http_address'] = '%s:%s' % (self.host, self.port)
+        self['http_port'] = port
+        self['http_address'] = '%s:%s' % (self.host, port)
 
     def tearDown(self):
         self.running = False
