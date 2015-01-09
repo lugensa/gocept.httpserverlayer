@@ -25,13 +25,13 @@ class Layer(plone.testing.Layer):
             args=(self.host, self.port, log))
         thread.setDaemon(True)
         thread.start()
-        self.port = self._find_bound_port()
+        port = self._find_bound_port()
         self['http_host'] = self.host
-        self['http_port'] = self.port
-        self['http_address'] = '%s:%s' % (self.host, self.port)
+        self['http_port'] = port
+        self['http_address'] = '%s:%s' % (self.host, port)
         # notify ZopeTestCase infrastructure that a ZServer has been started
         Testing.ZopeTestCase.utils._Z2HOST = self.host
-        Testing.ZopeTestCase.utils._Z2PORT = self.port
+        Testing.ZopeTestCase.utils._Z2PORT = port
 
     def _find_bound_port(self):
         for i in range(1000):

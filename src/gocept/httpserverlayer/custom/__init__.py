@@ -25,10 +25,10 @@ class Layer(plone.testing.Layer):
         # Wait as it sometimes takes a while to get the server started.
         # XXX this is a little kludgy
         time.sleep(0.001)
-        self.port = self['httpd'].server_port
+        port = self['httpd'].server_port
         self['http_host'] = self.host
-        self['http_port'] = self.port
-        self['http_address'] = '%s:%s' % (self.host, self.port)
+        self['http_port'] = port
+        self['http_address'] = '%s:%s' % (self.host, port)
 
         # XXX copy&paste from gocept.httpserverlayer.wsgi
         def silent_flush(self):
