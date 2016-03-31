@@ -156,31 +156,6 @@ Most flavours require the usage of a specialised ``TestCase`` in addition to
 the test layer.
 
 
-Zope3 / ZTK (zope.app.testing)
-==============================
-
-Requires ``gocept.httpserverlayer[zopeapptesting]``.
-
-This test layer builds on the usual ZCMLLayer that is used for typical ZTK
-functional tests::
-
-    import gocept.httpserverlayer.zopeapptesting
-    import zope.app.testing.functional
-
-    ZCML_LAYER = zope.app.testing.functional.ZCMLLayer(
-        'ftesting.zcml', __name__, __name__, allow_teardown=True)
-    HTTP_LAYER = gocept.httpserverlayer.zopeapptesting.Layer(
-        name='HTTPLayer', bases=(ZCML_LAYER,))
-
-    class ZTKExample(gocept.httpserverlayer.zopeapptesting.TestCase):
-
-        layer = HTTP_LAYER
-
-        def test(self):
-            r = urllib.urlopen('http://%s/' % self.layer['http_address'])
-            self.assertIn('Hello world', r.read())
-
-
 Zope3 / ZTK / Grok (zope.app.wsgi)
 ==================================
 
@@ -219,47 +194,6 @@ Grok (which uses ``zope.app.appsetup.testlayer.ZODBLayer``)::
         name='HTTPLayer', bases=(WSGI_LAYER,))
 
     class GrokExample(unittest.TestCase):
-
-        layer = HTTP_LAYER
-
-        def test(self):
-            r = urllib.urlopen('http://%s/' % self.layer['http_address'])
-            self.assertIn('Hello world', r.read())
-
-
-Zope 2 via WSGI
-===============
-
-If your Zope 2 setup supports it, you can use the WSGI integration instead of a
-specialised Zope 2 integration to run your tests.
-
-You might see the following exception when running tests::
-
-    File ".../repoze.retry-1.0-py2.7.egg/repoze/retry/__init__.py", line 55, in __call__
-      cl = int(cl)
-     ValueError: invalid literal for int() with base 10: ''
-
-To fix this issue you can use an additional middleware around your WSGI
-application: ``gocept.httpserverlayer.wsgi.FixupMiddleware``.
-
-
-Plone (ZopeTestCase)
-====================
-
-Requires ``gocept.httpserverlayer[plonetestcase]``.
-
-This test layer builds on ``Products.PloneTestCase.laye.PloneSiteLayer``::
-
-    from Products.PloneTestCase.layer import PloneSiteLayer
-    import Products.PloneTestCase.PloneTestCase
-    import gocept.httpserverlayer.plone
-
-    Products.PloneTestCase.PloneTestCase.setupPloneSite(id='plone')
-
-    HTTP_LAYER = gocept.httpserverlayer.zope2.Layer(
-        name='HTTPLayer', bases=(PloneSiteLayer,))
-
-    class PloneTests(gocept.httpserverlayer.plone.TestCase):
 
         layer = HTTP_LAYER
 
