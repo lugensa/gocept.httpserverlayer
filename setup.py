@@ -19,21 +19,6 @@ setup(
     extras_require={
         'test': [
         ],
-        'zopeapptesting': [
-            'zope.app.server',
-            'zope.app.testing',
-            'zope.app.wsgi',
-            'zope.server',
-        ],
-        'test_zopeapptesting': [
-            'zope.app.appsetup',
-            'zope.app.zcmlfiles',
-            'zope.securitypolicy',
-            'zope.testing >= 3.8.0',
-            'zope.interface',
-            'zope.schema',
-            'ZODB3',
-        ],
         'zopeappwsgi': [
             'zope.app.wsgi',
         ],
@@ -41,16 +26,6 @@ setup(
             'grok',
             'zope.app.appsetup',
             'ZODB3',
-        ],
-        'zope2testcase': [
-            'Zope2',  # Zope2>=2.12 is eggified
-        ],
-        'plonetestcase': [
-            'Products.PloneTestCase',
-        ],
-        'test_plonetestcase': [
-            'Plone',
-            'PILwoTK',
         ],
         'plonetestingz2': [
             'plone.testing[z2]',
