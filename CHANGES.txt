@@ -3,10 +3,10 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-1.5.4 (unreleased)
+2.0 (unreleased)
 ==================
 
-- Drop support for ``zopeapptesting.layer``, ``zope2testcase.layer`` and ``plonetestcase.layer``.
+- Drop support for ``zope.app.testing``, ``Testing.ZopeTestCase`` and ``Products.PloneTestCase``.
 
 - Drop support for Python 2.6
 
