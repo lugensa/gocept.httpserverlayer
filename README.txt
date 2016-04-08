@@ -202,6 +202,22 @@ Grok (which uses ``zope.app.appsetup.testlayer.ZODBLayer``)::
             self.assertIn('Hello world', r.read())
 
 
+Zope 2 via WSGI
+===============
+
+If your Zope 2 setup supports it, you can use the WSGI integration instead of a
+specialised Zope 2 integration to run your tests.
+
+You might see the following exception when running tests::
+
+    File ".../repoze.retry-1.0-py2.7.egg/repoze/retry/__init__.py", line 55, in __call__
+      cl = int(cl)
+     ValueError: invalid literal for int() with base 10: ''
+
+To fix this issue you can use an additional middleware around your WSGI
+application: ``gocept.httpserverlayer.wsgi.FixupMiddleware``.
+
+
 Zope 2 / Plone (plone.testing.z2)
 =================================
 
