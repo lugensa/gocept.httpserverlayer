@@ -6,7 +6,8 @@ Change log for gocept.httpserverlayer
 1.5.4 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Fix regression in ``.zopeapptesting.TestCase.setUp()`` which got introduced
+  in version 1.4.0.
 
 
 1.5.3 (2015-01-09)
