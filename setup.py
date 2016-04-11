@@ -17,23 +17,11 @@ setup(
     ],
 
     extras_require={
-        'test': [
-        ],
         'zopeappwsgi': [
             'zope.app.wsgi',
         ],
-        'test_zopeappwsgi': [
-            'grok',
-            'zope.app.appsetup',
-            'ZODB3',
-        ],
         'plonetestingz2': [
             'plone.testing[z2]',
-        ],
-        'test_plonetestingz2': [
-            'Plone',
-            'PILwoTK',
-            'plone.app.testing',
         ],
     },
 
@@ -61,7 +49,7 @@ Programming Language :: Python :: 2 :: Only
     )),
 
     namespace_packages=['gocept'],
-    packages=find_packages('src'),
+    packages=find_packages(where='src'),
     package_dir={'': 'src'},
     include_package_data=True,
     data_files=[('', glob.glob(project_path('*.txt')))],

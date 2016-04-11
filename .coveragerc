@@ -10,4 +10,10 @@ omit = */interfaces.py
        */tests/*
 
 [html]
-directory = coverage-report
+directory = htmlcov
+
+[paths]
+source =
+   src/gocept/httpserverlayer
+   .tox/*/lib/python*/site-packages/gocept/httpserverlayer
+   .tox/pypy*/site-packages/gocept/httpserverlayer
