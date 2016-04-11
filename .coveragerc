@@ -10,7 +10,7 @@ omit = */interfaces.py
        */tests/*
 
 [html]
-directory = htmlcov
+directory = coverage-report
 
 [paths]
 source =
