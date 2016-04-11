@@ -9,7 +9,8 @@ import urllib
 
 
 class StaticFileRequestHandler(
-    gocept.httpserverlayer.custom.RequestHandler, SimpleHTTPRequestHandler):
+        gocept.httpserverlayer.custom.RequestHandler,
+        SimpleHTTPRequestHandler):
 
     # The documentroot is set on the class just before passing the class on
     # to the BaseHTTPServer.HTTPServer.

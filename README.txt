@@ -249,14 +249,3 @@ For a plain Zope2 application this might look like this (uses
     HTTP_LAYER = plone.testing.Layer(
         name='HTTPLayer',
         bases=(Z2_LAYER, gocept.httpserverlayer.plonetesting.HTTP_SERVER))
-
-And for a Plone application like this (uses ``plone.app.testing``)::
-
-    import gocept.httpserverlayer.plonetesting
-    import plone.app.testing.layers
-    import plone.testing
-
-    HTTP_LAYER = plone.testing.Layer(
-        name='HTTPLayer',
-        bases=(plone.app.testing.layers.PLONE_FIXTURE,
-               gocept.httpserverlayer.plonetesting.HTTP_SERVER))

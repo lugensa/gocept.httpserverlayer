@@ -5,14 +5,11 @@ Developing gocept.httpserverlayer
 :Author:
     `gocept <http://gocept.com/>`_ <mail@gocept.com>
 
-:Online documentation:
-    http://packages.python.org/gocept.httpserverlayer/
-
 :PyPI page:
     http://pypi.python.org/pypi/gocept.httpserverlayer/
 
 :Issue tracker:
-    https://projects.gocept.com/projects/gocept-httpserverlayer/
+    https://bitbucket.org/gocept/gocept.httpserverlayer/issues
 
 :Source code:
     https://bitbucket.org/gocept/gocept.httpserverlayer/
@@ -20,15 +17,5 @@ Developing gocept.httpserverlayer
 :Current change log:
     https://bitbucket.org/gocept/gocept.httpserverlayer/raw/tip/CHANGES.txt
 
-
-buildout configuration
-======================
-
-gocept.httpserverlayer integrates with quite a lot of different web frameworks,
-so there are quite a lot of buildout configurations for this package, so we are
-able to run our tests against all the different software versions we integrate
-with. These configurations reside in the ``flavours/`` directory, and you can
-employ one by editing ``buildout.cfg`` and extending it::
-
-    [buildout]
-    extends = flavours/MY_FLAVOUR.cfg
+:Run tests:
+    Use tox, for info see: https://pypi.python.org/pypi/tox

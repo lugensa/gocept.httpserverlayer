@@ -34,7 +34,7 @@ class Layer(plone.testing.Layer):
         def silent_flush(self):
             try:
                 orig_flush(self)
-            except socket.error, e:
+            except socket.error as e:
                 if e.args[0] != 32:
                     raise
         orig_flush = self['_orig_socket_flush'] = socket._fileobject.flush

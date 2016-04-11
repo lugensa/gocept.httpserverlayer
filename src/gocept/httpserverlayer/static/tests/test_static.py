@@ -59,6 +59,6 @@ class TestStaticLayerInAction(unittest.TestCase):
 
     def test_should_return_files(self):
         open(os.path.join(self.layer['documentroot'], 'index'), 'w')\
-        .write('Hello World!')
+            .write('Hello World!')
         r = urllib2.urlopen('http://%s/index' % self.layer['http_address'])
         self.assertTrue('Hello World' in r.read())

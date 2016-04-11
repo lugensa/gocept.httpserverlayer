@@ -1,5 +1,5 @@
 import gocept.httpserverlayer.tests.isolation
-import gocept.httpserverlayer.zopeappwsgi.testing
+from gocept.httpserverlayer.zopeappwsgi.testing import ZODB_LAYER
 import unittest
 
 
@@ -9,7 +9,7 @@ class GrokTests(gocept.httpserverlayer.tests.isolation.IsolationTests,
     layer = gocept.httpserverlayer.zopeappwsgi.testing.HTTP_LAYER
 
     def getDatabase(self):
-        return gocept.httpserverlayer.zopeappwsgi.testing.ZODB_LAYER.db
+        return ZODB_LAYER.db
 
     def getRootFolder(self):
-        return gocept.httpserverlayer.zopeappwsgi.testing.ZODB_LAYER.getRootFolder()
+        return ZODB_LAYER.getRootFolder()

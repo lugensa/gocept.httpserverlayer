@@ -1,11 +1,19 @@
 syntax: glob
 
+*.egg-info
+*.pyc
+.cache
+.coverage*
 .installed.cfg
+.tox
 bin
 build
+coverage.xml
 develop-eggs
 dist
 doc/_api
 eggs
+htmlcov
 local.cfg
+junit-*.xml
 parts
