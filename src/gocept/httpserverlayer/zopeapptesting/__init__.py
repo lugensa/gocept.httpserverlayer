@@ -52,7 +52,7 @@ class TestCase(zope.app.testing.functional.FunctionalTestCase):
         # DemoStorage (which is set by FunctionalTestCase)
         super(TestCase, self).setUp()
         db = zope.app.testing.functional.FunctionalTestSetup().db
-        application = self.layer['http'].application
+        application = self.layer['httpd'].application
         assert isinstance(application, zope.app.wsgi.WSGIPublisherApplication)
         factory = type(application.requestFactory)
         application.requestFactory = factory(db)
