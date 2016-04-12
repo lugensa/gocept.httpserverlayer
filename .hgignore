@@ -14,6 +14,6 @@ dist
 doc/_api
 eggs
 htmlcov
-local.cfg
 junit-*.xml
+local.cfg
 parts
