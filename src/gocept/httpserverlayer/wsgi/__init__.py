@@ -3,7 +3,6 @@ import os
 import plone.testing
 import socket
 import threading
-import urllib
 
 
 class LogWSGIRequestHandler(WSGIRequestHandler):
@@ -72,24 +71,10 @@ class Layer(plone.testing.Layer):
         del self['_orig_socket_flush']
 
     def serve(self):
-        if hasattr(self['httpd'], 'shutdown'):
-            self['httpd'].serve_forever()
-        else:
-            # python < 2.6
-            self._running = True
-            while self._running:
-                self['httpd'].handle_request()
+        self['httpd'].serve_forever()
 
     def shutdown(self):
-        if hasattr(self['httpd'], 'shutdown'):
-            self['httpd'].shutdown()
-        else:
-            # python < 2.6
-            self._running = False
-            try:
-                urllib.urlopen('http://%s/die' % self['http_address'])
-            except socket.error:
-                pass
+        self['httpd'].shutdown()
 
 
 class FixupMiddleware(object):
