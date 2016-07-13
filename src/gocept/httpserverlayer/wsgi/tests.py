@@ -21,7 +21,7 @@ class SimpleApp(object):
         if path == '/':
             statuscode = '200 OK'
             headers.append(('Content-Type', 'text/html'))
-            body = """
+            body = b"""
               <html>
               <head>
                 <title>Test</title>
@@ -31,7 +31,7 @@ class SimpleApp(object):
               </body>
               </html>"""
         start_response(statuscode, headers)
-        return body
+        return [body]
 
 
 EXAMPLE_LAYER = gocept.httpserverlayer.wsgi.Layer()
