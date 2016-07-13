@@ -1,5 +1,8 @@
 import gocept.httpserverlayer.wsgi
-import urllib
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib import urlopen
 
 try:
     import unittest2 as unittest
@@ -41,5 +44,5 @@ class WSGITest(unittest.TestCase):
 
     def test_http_works(self):
         self.assertTrue(self.layer['httpd_thread'].isAlive)
-        r = urllib.urlopen('http://%s/' % self.layer['http_address'])
-        self.assertIn('Hello world', r.read())
+        r = urlopen('http://%s/' % self.layer['http_address'])
+        self.assertIn(b'Hello world', r.read())
