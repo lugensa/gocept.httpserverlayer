@@ -1,8 +1,8 @@
 from wsgiref.simple_server import WSGIServer, WSGIRequestHandler
 import os
 import plone.testing
-import socket
 import threading
+import wsgiref.handlers
 
 
 class LogWSGIRequestHandler(WSGIRequestHandler):
@@ -45,14 +45,17 @@ class Layer(plone.testing.Layer):
         self['httpd_thread'].daemon = True
         self['httpd_thread'].start()
 
+        orig_flush = self['_orig_handler_flush'] = (
+            wsgiref.handlers.SimpleHandler._flush)
+
         def silent_flush(self):
             try:
                 orig_flush(self)
-            except socket.error as e:
+            except OSError as e:
                 if e.args[0] != 32:
                     raise
-        orig_flush = self['_orig_socket_flush'] = socket._fileobject.flush
-        socket._fileobject.flush = silent_flush
+
+        wsgiref.handlers.SimpleHandler._flush = silent_flush
 
     def tearDown(self):
         self.shutdown()
@@ -67,8 +70,8 @@ class Layer(plone.testing.Layer):
         del self['http_port']
         del self['http_address']
 
-        socket._fileobject.flush = self['_orig_socket_flush']
-        del self['_orig_socket_flush']
+        wsgiref.handlers.SimpleHandler._flush = self['_orig_handler_flush']
+        del self['_orig_handler_flush']
 
     def serve(self):
         self['httpd'].serve_forever()
