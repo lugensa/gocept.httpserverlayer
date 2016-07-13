@@ -1,4 +1,7 @@
-import BaseHTTPServer
+try:
+    import BaseHTTPServer as http_server
+except ImportError:
+    import http.server as http_server
 import plone.testing
 import socket
 import threading
@@ -16,7 +19,7 @@ class Layer(plone.testing.Layer):
 
     def setUp(self):
         self['request_handler'] = self.request_handler
-        self['httpd'] = BaseHTTPServer.HTTPServer(
+        self['httpd'] = http_server.HTTPServer(
             (self.host, self.port), self.request_handler)
         self['httpd_thread'] = threading.Thread(
             target=self['httpd'].serve_forever)
@@ -54,7 +57,7 @@ class Layer(plone.testing.Layer):
         del self['_orig_socket_flush']
 
 
-class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+class RequestHandler(http_server.BaseHTTPRequestHandler):
     """Handler for testing which does not log to STDOUT."""
 
     def log_message(self, format, *args):

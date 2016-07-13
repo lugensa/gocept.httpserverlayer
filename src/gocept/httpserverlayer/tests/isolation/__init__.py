@@ -1,5 +1,7 @@
-import urllib
-
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib import urlopen
 
 ENSURE_ORDER = False
 
@@ -14,8 +16,8 @@ class IsolationTests(object):
 
     def test_0_set(self):
         global ENSURE_ORDER
-        r = urllib.urlopen('http://%s/set.html' % self.layer['http_address'])
-        r = urllib.urlopen('http://%s/get.html' % self.layer['http_address'])
+        r = urlopen('http://%s/set.html' % self.layer['http_address'])
+        r = urlopen('http://%s/get.html' % self.layer['http_address'])
         self.assertEqual('1', r.read())
         ENSURE_ORDER = True
 
@@ -23,12 +25,12 @@ class IsolationTests(object):
         global ENSURE_ORDER
         self.assertEqual(
             ENSURE_ORDER, True, 'Set test was not run before get test')
-        r = urllib.urlopen('http://%s/get.html' % self.layer['http_address'])
+        r = urlopen('http://%s/get.html' % self.layer['http_address'])
         self.assertNotEqual('1', r.read())
         ENSURE_ORDER = False
 
     def test_each_request_gets_a_separate_zodb_connection(self):
-        r = urllib.urlopen(
+        r = urlopen(
             'http://%s/inc-volatile.html' % self.layer['http_address'])
         self.assertEqual('1', r.read())
         # We demonstrate isolation using volatile attributes (which are
@@ -44,7 +46,7 @@ class IsolationTests(object):
         # the opening of another connection by claiming one here.
         db = self.getDatabase()
         conn = db.open()
-        r = urllib.urlopen(
+        r = urlopen(
             'http://%s/inc-volatile.html' % self.layer['http_address'])
         conn.close()
         self.assertEqual('1', r.read())
@@ -52,6 +54,6 @@ class IsolationTests(object):
     def test_requests_get_different_zodb_connection_than_tests(self):
         root = self.getRootFolder()
         root._v_counter = 1
-        r = urllib.urlopen(
+        r = urlopen(
             'http://%s/inc-volatile.html' % self.layer['http_address'])
         self.assertEqual('1', r.read())
