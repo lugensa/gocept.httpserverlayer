@@ -39,7 +39,9 @@ License :: OSI Approved :: Zope Public License
 Programming Language :: Python
 Programming Language :: Python :: 2
 Programming Language :: Python :: 2.7
-Programming Language :: Python :: 2 :: Only
+Programming Language :: Python :: 3
+Programming Language :: Python :: 3.4
+Programming Language :: Python :: 3.5
 """[:-1].split('\n'),
     description='HTTP server integration for testing',
     long_description='\n\n'.join(open(project_path(name)).read() for name in (
