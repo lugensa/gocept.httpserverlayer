@@ -3,9 +3,9 @@ try:
 except ImportError:
     import http.server as http_server
 import plone.testing
-import socket
 import threading
 import time
+import wsgiref.handlers
 
 
 class Layer(plone.testing.Layer):
@@ -34,14 +34,17 @@ class Layer(plone.testing.Layer):
         self['http_address'] = '%s:%s' % (self.host, port)
 
         # XXX copy&paste from gocept.httpserverlayer.wsgi
+        orig_flush = self['_orig_handler_flush'] = (
+            wsgiref.handlers.SimpleHandler._flush)
+
         def silent_flush(self):
             try:
                 orig_flush(self)
-            except socket.error as e:
+            except OSError as e:
                 if e.args[0] != 32:
                     raise
-        orig_flush = self['_orig_socket_flush'] = socket._fileobject.flush
-        socket._fileobject.flush = silent_flush
+
+        wsgiref.handlers.SimpleHandler._flush = silent_flush
 
     def tearDown(self):
         self['httpd'].shutdown()
@@ -53,8 +56,8 @@ class Layer(plone.testing.Layer):
         del self['http_port']
         del self['http_address']
 
-        socket._fileobject.flush = self['_orig_socket_flush']
-        del self['_orig_socket_flush']
+        wsgiref.handlers.SimpleHandler._flush = self['_orig_handler_flush']
+        del self['_orig_handler_flush']
 
 
 class RequestHandler(http_server.BaseHTTPRequestHandler):
