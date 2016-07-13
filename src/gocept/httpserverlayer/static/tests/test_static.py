@@ -43,7 +43,7 @@ class TestStaticFiles(unittest.TestCase):
             .write('Hello World!')
         response = urlopen(
             'http://%s/foo.txt' % self.testlayer['http_address'])
-        self.assertEqual('Hello World!', response.read())
+        self.assertEqual(b'Hello World!', response.read())
 
 
 class TestStaticFilesShutdown(unittest.TestCase):
