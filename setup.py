@@ -43,15 +43,17 @@ Programming Language :: Python :: 2 :: Only
 """[:-1].split('\n'),
     description='HTTP server integration for testing',
     long_description='\n\n'.join(open(project_path(name)).read() for name in (
-        'README.txt',
-        'HACKING.txt',
-        'CHANGES.txt',
+        'README.rst',
+        'HACKING.rst',
+        'CHANGES.rst',
     )),
 
     namespace_packages=['gocept'],
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     include_package_data=True,
-    data_files=[('', glob.glob(project_path('*.txt')))],
+    data_files=[('',
+                 glob.glob(project_path('*.txt')),
+                 glob.glob(project_path('*.rst')))],
     zip_safe=False,
 )
