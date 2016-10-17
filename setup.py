@@ -23,6 +23,10 @@ setup(
         'plonetestingz2': [
             'plone.testing[z2]',
         ],
+        'plonetestingz4': [
+            'ZServer >= 4.0a1',
+            'plone.testing[z2]',
+        ],
     },
 
     entry_points={
