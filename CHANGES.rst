@@ -6,7 +6,7 @@ Change log for gocept.httpserverlayer
 2.1 (unreleased)
 ================
 
-- Support the upcoming Zope 4 through extras_require [plonetestingz2].
+- Support the upcoming Zope 4 through extras_require [plonetestingz4].
 
 
 2.0 (2016-04-12)
