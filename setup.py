@@ -25,7 +25,7 @@ setup(
         ],
         'plonetestingz4': [
             'ZServer >= 4.0a1',
-            'plone.testing[z2]',
+            'plone.testing[z2] > 5.0',
         ],
     },
 
