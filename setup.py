@@ -21,9 +21,13 @@ setup(
             'zope.app.wsgi',
         ],
         'plonetestingz2': [
+            'transaction < 2.0',
+            'ZODB < 5.0',
             'plone.testing[z2]',
         ],
         'plonetestingz4': [
+            'ZODB < 5.0',
+            'transaction < 2.0',
             'ZServer >= 4.0a1',
             'plone.testing[z2] > 5.0',
         ],
