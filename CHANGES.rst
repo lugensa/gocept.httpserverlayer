@@ -8,6 +8,9 @@ Change log for gocept.httpserverlayer
 
 - Support the upcoming Zope 4 through extras_require [plonetestingz4].
 
+- Pin `transaction < 2.0` and `ZODB < 5.0` until `Zope2` is compatible with
+  these releases. (See https://github.com/zopefoundation/Zope/issues/79)
+
 
 2.0 (2016-04-12)
 ================
