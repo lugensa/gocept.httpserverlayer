@@ -35,7 +35,7 @@ setup(
     license='ZPL 2.1',
     url='https://bitbucket.org/gocept/gocept.httpserverlayer/',
 
-    keywords='',
+    keywords='HTTP Plone testing zope.testrunner layer Zope',
     classifiers="""\
 License :: OSI Approved :: Zope Public License
 Programming Language :: Python
