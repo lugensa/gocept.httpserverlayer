@@ -6,7 +6,7 @@ Change log for gocept.httpserverlayer
 2.2 (unreleased)
 ================
 
-- Nothing changed yet.
+- Ensure compatibility with `setuptools >= 30.0`.
 
 
 2.1 (2016-12-01)

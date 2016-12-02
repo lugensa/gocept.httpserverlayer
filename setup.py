@@ -1,10 +1,4 @@
 from setuptools import setup, find_packages
-import glob
-import os.path
-
-
-def project_path(*names):
-    return os.path.join(os.path.dirname(__file__), *names)
 
 
 setup(
@@ -50,7 +44,7 @@ Programming Language :: Python :: 2.7
 Programming Language :: Python :: 2 :: Only
 """[:-1].split('\n'),
     description='HTTP server integration for testing',
-    long_description='\n\n'.join(open(project_path(name)).read() for name in (
+    long_description='\n\n'.join(open(name).read() for name in (
         'README.rst',
         'HACKING.rst',
         'CHANGES.rst',
@@ -60,8 +54,5 @@ Programming Language :: Python :: 2 :: Only
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     include_package_data=True,
-    data_files=[('',
-                 glob.glob(project_path('*.txt')),
-                 glob.glob(project_path('*.rst')))],
     zip_safe=False,
 )
