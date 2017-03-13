@@ -42,6 +42,7 @@ class StaticFileRequestHandler(
         if 'GOCEPT_HTTP_VERBOSE_LOGGING' in os.environ:
             SimpleHTTPRequestHandler.log_request(self, *args)
 
+
 TEMPORARY = object()
 
 
@@ -77,5 +78,6 @@ class Layer(gocept.httpserverlayer.custom.Layer):
             os.remove(fullpath)
         # silence annoying 404s
         open(os.path.join(self['documentroot'], 'favicon.ico'), 'w').close()
+
 
 STATIC_FILES = Layer()
