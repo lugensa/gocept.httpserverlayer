@@ -14,6 +14,7 @@ class WSGILayer(gocept.httpserverlayer.zopeappwsgi.Layer):
     def get_current_zodb(self):
         return ZODB_LAYER.db
 
+
 WSGI_LAYER = WSGILayer()
 
 
