@@ -17,7 +17,7 @@ setup(
         'plonetestingz2': [
             'transaction < 2.0',
             'ZODB < 5.0',
-            'plone.testing[z2]',
+            'plone.testing[z2] != 5.1',
         ],
         'plonetestingz4': [
             'ZODB < 5.0',
