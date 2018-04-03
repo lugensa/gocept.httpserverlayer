@@ -1,11 +1,17 @@
-from SimpleHTTPServer import SimpleHTTPRequestHandler
+try:
+    from SimpleHTTPServer import SimpleHTTPRequestHandler
+except ImportError:
+    from http.server import SimpleHTTPRequestHandler
 import gocept.httpserverlayer.custom
 import os
 import os.path
 import posixpath
 import shutil
 import tempfile
-import urllib
+try:
+    from urllib.parse import unquote
+except ImportError:
+    from urllib import unquote
 
 
 class StaticFileRequestHandler(
@@ -24,7 +30,7 @@ class StaticFileRequestHandler(
         # SimpleHTTPServer.SimpleHTTPRequestHandler.
         path = path.split('?', 1)[0]
         path = path.split('#', 1)[0]
-        path = posixpath.normpath(urllib.unquote(path))
+        path = posixpath.normpath(unquote(path))
         words = path.split('/')
         words = filter(None, words)
 

@@ -1,7 +1,10 @@
 import gocept.httpserverlayer.static
 import os
 import unittest
-import urllib2
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
 
 
 class TestStaticFiles(unittest.TestCase):
@@ -38,9 +41,9 @@ class TestStaticFiles(unittest.TestCase):
     def test_serves_files(self):
         open(os.path.join(self.testlayer['documentroot'], 'foo.txt'), 'w')\
             .write('Hello World!')
-        response = urllib2.urlopen(
+        response = urlopen(
             'http://%s/foo.txt' % self.testlayer['http_address'])
-        self.assertEqual('Hello World!', response.read())
+        self.assertEqual(b'Hello World!', response.read())
 
 
 class TestStaticFilesShutdown(unittest.TestCase):
@@ -60,5 +63,5 @@ class TestStaticLayerInAction(unittest.TestCase):
     def test_should_return_files(self):
         open(os.path.join(self.layer['documentroot'], 'index'), 'w')\
             .write('Hello World!')
-        r = urllib2.urlopen('http://%s/index' % self.layer['http_address'])
-        self.assertTrue('Hello World' in r.read())
+        r = urlopen('http://%s/index' % self.layer['http_address'])
+        self.assertTrue(b'Hello World' in r.read())

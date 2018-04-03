@@ -6,7 +6,7 @@ Change log for gocept.httpserverlayer
 2.3 (unreleased)
 ================
 
-- Nothing changed yet.
+- Claim Support for Python 3.4 and 3.5.
 
 
 2.2 (2016-12-02)
