@@ -35,13 +35,21 @@ setup(
 
     keywords='HTTP Plone testing zope.testrunner layer Zope',
     classifiers="""\
+Development Status :: 5 - Production/Stable
+Framework :: Zope :: 2
+Framework :: Zope :: 3
+Framework :: Zope :: 4
+Intended Audience :: Developers
 License :: OSI Approved :: Zope Public License
-Programming Language :: Python
+Operating System :: OS Independent
 Programming Language :: Python :: 2
 Programming Language :: Python :: 2.7
 Programming Language :: Python :: 3
 Programming Language :: Python :: 3.4
 Programming Language :: Python :: 3.5
+Programming Language :: Python :: Implementation :: CPython
+Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Topic :: Software Development :: Testing
 """[:-1].split('\n'),
     description='HTTP server integration for testing',
     long_description='\n\n'.join(open(name).read() for name in (
