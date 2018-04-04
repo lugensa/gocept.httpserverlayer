@@ -48,6 +48,7 @@ class Layer(plone.testing.Layer):
 
     def tearDown(self):
         self['httpd'].shutdown()
+        self['httpd'].server_close()
         self['httpd_thread'].join()
         del self['request_handler']
         del self['httpd']

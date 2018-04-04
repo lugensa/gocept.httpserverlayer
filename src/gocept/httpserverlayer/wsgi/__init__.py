@@ -78,6 +78,7 @@ class Layer(plone.testing.Layer):
 
     def shutdown(self):
         self['httpd'].shutdown()
+        self['httpd'].server_close()
 
 
 class FixupMiddleware(object):
