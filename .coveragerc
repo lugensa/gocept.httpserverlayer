@@ -1,13 +1,9 @@
 [run]
 branch = True
-source = gocept.httpserverlayer
+source = src
 
 [report]
 precision = 2
-omit = */interfaces.py
-       */interfaces/*
-       */tests.py
-       */tests/*
 
 [html]
 directory = coverage-report
