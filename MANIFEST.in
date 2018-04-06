@@ -4,6 +4,5 @@ include *.txt
 recursive-include src *.txt *.zcml
 
 exclude .coveragerc
-exclude pytest.ini
 exclude tox.ini
 
