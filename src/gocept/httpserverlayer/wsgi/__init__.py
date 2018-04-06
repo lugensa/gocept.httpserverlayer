@@ -88,13 +88,6 @@ class FixupMiddleware(object):
         self.app = app
 
     def __call__(self, environ, start_response):
-        # wsgiref.simple_server.ServerHandler.setup_environ adds
-        # 'CONTENT_LENGTH' key to environ which has the value '', but
-        # repoze.retry.Retry.__call__ 1.0. expects the value to be
-        # convertable to `int` See http://bugs.repoze.org/issue171.
-        if environ.get('CONTENT_LENGTH') == '':
-            del environ['CONTENT_LENGTH']
-
         # gocept.httpserverlayer uses wsgiref but
         # wsgiref.simple_server.ServerHandler.start_response bails when it
         # sees the 'Connection' header, so we remove it here:

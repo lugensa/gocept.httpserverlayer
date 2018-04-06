@@ -3,10 +3,16 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-2.3 (unreleased)
+3.0 (unreleased)
 ================
 
-- Claim Support for Python 3.4 and 3.5.
+- Add support for Python 3.6.
+
+- Drop support for Zope 2.x
+
+- Rename the setup.py extra `plonetestingz2` into `plonetestingzope`.
+
+- Rename the module `.plonetestingz2` into `.plonetestingzope`.
 
 
 2.2 (2016-12-02)

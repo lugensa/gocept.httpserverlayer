@@ -16,7 +16,7 @@ and exposes the following resources (accessible in your test case as
 :http_address: ``hostname:port``, convenient to use in URLs
    (e.g. ``'http://user:password@%s/path' % self.layer['http_address']``)
 
-This package is compatible with Python version 2.7.
+This package is compatible with Python version 2.7 and 3.6.
 
 .. _`test layers`: http://pypi.python.org/pypi/plone.testing#layers
 .. _`zope.testrunner`: http://pypi.python.org/pypi/zope.testrunner
@@ -42,7 +42,7 @@ This test layer takes a WSGI callable and runs it in a temporary HTTP server::
         layer = HTTP_LAYER
 
         def test_something(self):
-            r = urllib.urlopen('http://%s/' % self.layer['http_address'])
+            r = urllib.urlopen('http://{0.layer[http_address]}/'.format(self))
             self.assertIn('Hello world', r.read())
 
 You can also have a base layer provide the WSGI callable (in the
@@ -81,7 +81,7 @@ This test layer serves up the contents of a directory::
         layer = HTTP_LAYER
 
         def test_something(self):
-            r = urllib.urlopen('http://%s/index' % self.layer['http_address'])
+            r = urllib.urlopen('http://{0.layer[http_address]}/'.format(self))
             self.assertIn('Hello world', r.read())
 
 If you don't pass in a directory, a temporary directory will be created/removed
@@ -99,9 +99,11 @@ For convenience, a layer instance is already provided as ``STATIC_FILES``::
         layer = HTTP_LAYER
 
         def test_something(self):
-            open(os.path.join(self.testlayer['documentroot'], 'index'), 'w')\
-            .write('Hello World!')
-            r = urllib.urlopen('http://%s/index' % self.layer['http_address'])
+            path = os.path.join(self.testlayer['documentroot'], 'index')
+            with open(path, 'w') as f:
+                f.write('Hello World!')
+            r = urllib.urlopen(
+                'http://{0.layer[http_address]}/index'.format(self))
             self.assertIn('Hello world', r.read())
 
 
@@ -138,26 +140,24 @@ fine-grained control::
         layer = HTTP_LAYER
 
         def test_something(self):
-            urllib.urlopen('http://%s/' % self.layer['http_address'],
-                urllib.urlencode({'foo': 'bar'}))
+            urllib.urlopen('http://{0.layer[http_address]}/'.format(self),
+                           urllib.urlencode({'foo': 'bar'}))
             self.assertEqual(
-                'foo=bar', self.layer['request_handler'].posts_received[0]['data'])
+                'foo=bar',
+                self.layer['request_handler'].posts_received[0]['data'])
 
 
 Framework integration
 =====================
 
-gocept.httpserverlayer also provides integration with several web frameworks.
+gocept.httpserverlayer also provides integration with some web frameworks.
 Different frameworks require different dependencies; this is handled via
 setuptools extras of gocept.httpserverlayer (e.g. for Grok integration you need
 to require ``gocept.httpserverlayer[zopeappwsgi]``).
 
-Most flavours require the usage of a specialised ``TestCase`` in addition to
-the test layer.
 
-
-Zope3 / ZTK / Grok (zope.app.wsgi)
-==================================
+Zope 3 / ZTK / Grok (zope.app.wsgi)
+===================================
 
 Requires ``gocept.httpserverlayer[zopeappwsgi]``
 
@@ -202,50 +202,49 @@ Grok (which uses ``zope.app.appsetup.testlayer.ZODBLayer``)::
             self.assertIn('Hello world', r.read())
 
 
-Zope 2 via WSGI
-===============
+Zope via WSGI
+=============
 
-If your Zope 2 setup supports it, you can use the WSGI integration instead of a
-specialised Zope 2 integration to run your tests.
+If your Zope setup supports WSGI, you can use the WSGI integration instead of a
+specialised Zope integration to run your tests.
 
-You might see the following exception when running tests::
-
-    File ".../repoze.retry-1.0-py2.7.egg/repoze/retry/__init__.py", line 55, in __call__
-      cl = int(cl)
-     ValueError: invalid literal for int() with base 10: ''
-
+You might see an exception complainung about the ``Connection`` header.
 To fix this issue you can use an additional middleware around your WSGI
 application: ``gocept.httpserverlayer.wsgi.FixupMiddleware``.
 
 
-Zope 2 / Plone (plone.testing.z2)
-=================================
+Zope / Plone via `plone.testing.zope`
+=====================================
 
-Requires ``gocept.httpserverlayer[plonetestingz2]``.
+Requires ``gocept.httpserverlayer[plonetestingzope]``.
 
 gocept.httpserverlayer provides a ``plone.testing.Layer`` at
-``gocept.httpserverlayer.plonetesting.HTTP_SERVER`` that you can mix and match
+``gocept.httpserverlayer.plonetestingzope.HTTP_SERVER`` that you can mix and match
 with your base layers. No special TestCase is required, ``unittest.TestCase``
 is enough.
 
-For a plain Zope2 application this might look like this (uses
-``plone.testing[z2]``)::
+.. caution:: This setup also uses the WSGI flavour instead of ZServer which
+             was supported in `gocept.httpserverlayer < 3`.
 
-    import gocept.httpserverlayer.plonetesting
+For a plain Zope application this might look like this (uses
+``plone.testing[zope]``)::
+
+    import gocept.httpserverlayer.plonetestingzope
     import plone.testing
-    import plone.testing.z2
+    import plone.testing.zope
 
     class Layer(plone.testing.Layer):
 
-        defaultBases = (plone.testing.z2.STARTUP,)
+        defaultBases = (plone.testing.zope.STARTUP,)
 
         def setUp(self):
             zope.configuration.xmlconfig.file(
                 'testing.zcml', package=mypackage,
                 context=self['configurationContext'])
 
-    Z2_LAYER = Layer()
+    ZOPE_LAYER = Layer()
 
     HTTP_LAYER = plone.testing.Layer(
         name='HTTPLayer',
-        bases=(Z2_LAYER, gocept.httpserverlayer.plonetesting.HTTP_SERVER))
+        bases=(ZOPE_LAYER,
+               gocept.httpserverlayer.plonetestingzope.HTTP_SERVER))

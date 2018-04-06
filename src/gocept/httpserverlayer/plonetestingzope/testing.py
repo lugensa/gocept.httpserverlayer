@@ -1,25 +1,25 @@
-import gocept.httpserverlayer.plonetestingz2
+import gocept.httpserverlayer.plonetestingzope
 import plone.testing
-import plone.testing.z2
+import plone.testing.zope
 import zope.configuration.xmlconfig
 
 
 class Layer(plone.testing.Layer):
 
-    defaultBases = (plone.testing.z2.STARTUP,)
+    defaultBases = (plone.testing.zope.STARTUP,)
 
     def setUp(self):
         zope.configuration.xmlconfig.file(
-            'testing.zcml', package=gocept.httpserverlayer.plonetestingz2,
+            'testing.zcml', package=gocept.httpserverlayer.plonetestingzope,
             context=self['configurationContext'])
 
 
-Z2_LAYER = Layer()
+ZOPE_LAYER = Layer()
 
 
 HTTP_LAYER = plone.testing.Layer(
     name='HTTPLayer',
-    bases=(Z2_LAYER, gocept.httpserverlayer.plonetestingz2.HTTP_SERVER))
+    bases=(ZOPE_LAYER, gocept.httpserverlayer.plonetestingzope.HTTP_SERVER))
 
 
 class IsolationTestHelper(object):

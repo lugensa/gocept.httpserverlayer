@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gocept.httpserverlayer',
-    version='2.3.dev0',
+    version='3.0.dev0',
 
     install_requires=[
         'setuptools',
@@ -11,19 +11,15 @@ setup(
     ],
 
     extras_require={
-        'zopeappwsgi': [
-            'zope.app.wsgi',
         'test': [
             'shoobx.junitxml',
         ],
-        'plonetestingz2': [
-            'transaction < 2.0',
-            'ZODB < 5.0',
-            'plone.testing[z2] < 5.1',
+        'zopeappwsgi': [
+            'zope.app.wsgi >= 4',
         ],
-        'plonetestingz4': [
-            'ZServer >= 4.0a1',
-            'plone.testing[z2] >= 5.1.1',
+        'plonetestingzope': [
+            'Zope >= 4.0b1',
+            'plone.testing[zope] >= 7.0dev0',
         ],
     },
 
@@ -40,7 +36,6 @@ setup(
     keywords='HTTP Plone testing zope.testrunner layer Zope',
     classifiers="""\
 Development Status :: 5 - Production/Stable
-Framework :: Zope :: 2
 Framework :: Zope :: 3
 Framework :: Zope :: 4
 Intended Audience :: Developers
@@ -49,8 +44,7 @@ Operating System :: OS Independent
 Programming Language :: Python :: 2
 Programming Language :: Python :: 2.7
 Programming Language :: Python :: 3
-Programming Language :: Python :: 3.4
-Programming Language :: Python :: 3.5
+Programming Language :: Python :: 3.6
 Programming Language :: Python :: Implementation :: CPython
 Topic :: Internet :: WWW/HTTP :: HTTP Servers
 Topic :: Software Development :: Testing

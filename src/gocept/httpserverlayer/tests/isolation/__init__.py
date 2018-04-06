@@ -18,7 +18,7 @@ class IsolationTests(object):
         global ENSURE_ORDER
         r = urlopen('http://%s/set.html' % self.layer['http_address'])
         r = urlopen('http://%s/get.html' % self.layer['http_address'])
-        self.assertEqual('1', r.read())
+        self.assertEqual(b'1', r.read())
         ENSURE_ORDER = True
 
     def test_1_get(self):
@@ -32,7 +32,7 @@ class IsolationTests(object):
     def test_each_request_gets_a_separate_zodb_connection(self):
         r = urlopen(
             'http://%s/inc-volatile.html' % self.layer['http_address'])
-        self.assertEqual('1', r.read())
+        self.assertEqual(b'1', r.read())
         # We demonstrate isolation using volatile attributes (which are
         # guaranteed not to be present on separate connections). But since
         # there is no guarantee that volatile attributes disappear on
@@ -49,11 +49,11 @@ class IsolationTests(object):
         r = urlopen(
             'http://%s/inc-volatile.html' % self.layer['http_address'])
         conn.close()
-        self.assertEqual('1', r.read())
+        self.assertEqual(b'1', r.read())
 
     def test_requests_get_different_zodb_connection_than_tests(self):
         root = self.getRootFolder()
         root._v_counter = 1
         r = urlopen(
             'http://%s/inc-volatile.html' % self.layer['http_address'])
-        self.assertEqual('1', r.read())
+        self.assertEqual(b'1', r.read())
