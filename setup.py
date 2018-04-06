@@ -33,7 +33,7 @@ setup(
     license='ZPL 2.1',
     url='https://bitbucket.org/gocept/gocept.httpserverlayer/',
 
-    keywords='HTTP Plone testing zope.testrunner layer Zope',
+    keywords='HTTP server Plone testing zope.testrunner layer Zope',
     classifiers="""\
 Development Status :: 5 - Production/Stable
 Framework :: Zope :: 3
