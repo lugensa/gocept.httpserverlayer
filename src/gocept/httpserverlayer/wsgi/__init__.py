@@ -21,13 +21,13 @@ class Layer(plone.testing.Layer):
         super(Layer, self).__init__(*args, **kw)
         self.wsgi_app = None
 
-    def _get_wsgi_app(self):
+    @property
+    def wsgi_app(self):
         return self.get('wsgi_app', self._wsgi_app)
 
-    def _set_wsgi_app(self, value):
+    @wsgi_app.setter
+    def wsgi_app(self, value):
         self._wsgi_app = value
-
-    wsgi_app = property(_get_wsgi_app, _set_wsgi_app)
 
     @property
     def host(self):
