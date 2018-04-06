@@ -13,6 +13,8 @@ setup(
     extras_require={
         'zopeappwsgi': [
             'zope.app.wsgi',
+        'test': [
+            'shoobx.junitxml',
         ],
         'plonetestingz2': [
             'transaction < 2.0',
@@ -25,8 +27,10 @@ setup(
         ],
     },
 
-    entry_points={
-    },
+    entry_points="""
+        [console_scripts]
+        test = gocept.httpserverlayer.testing:test_runner
+    """,
 
     author='gocept <mail@gocept.com>',
     author_email='mail@gocept.com',
