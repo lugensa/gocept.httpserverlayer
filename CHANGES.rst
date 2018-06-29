@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-3.0 (unreleased)
+3.0 (2018-06-29)
 ================
 
 - Add support for Python 3.6.
