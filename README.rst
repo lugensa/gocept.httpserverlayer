@@ -208,7 +208,7 @@ Zope via WSGI
 If your Zope setup supports WSGI, you can use the WSGI integration instead of a
 specialised Zope integration to run your tests.
 
-You might see an exception complainung about the ``Connection`` header.
+You might see an exception complaining about the ``Connection`` header.
 To fix this issue you can use an additional middleware around your WSGI
 application: ``gocept.httpserverlayer.wsgi.FixupMiddleware``.
 
