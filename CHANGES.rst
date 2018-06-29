@@ -8,6 +8,8 @@ Change log for gocept.httpserverlayer
 
 - Create a wheel of the package.
 
+- Add support for Python 3.7.
+
 
 3.0 (2018-06-29)
 ================
