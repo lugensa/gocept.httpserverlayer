@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-3.1 (unreleased)
+3.1 (2019-01-15)
 ================
 
 - Create a wheel of the package.

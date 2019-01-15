@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gocept.httpserverlayer',
-    version='3.1.dev0',
+    version='3.1',
 
     install_requires=[
         'setuptools',
