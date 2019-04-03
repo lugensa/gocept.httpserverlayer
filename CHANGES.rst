@@ -3,7 +3,7 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-3.2 (unreleased)
+3.2 (2019-04-03)
 ================
 
 - Fix usage of pending deprecated ``Thread.isAlive()``.
