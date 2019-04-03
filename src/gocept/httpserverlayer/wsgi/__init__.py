@@ -60,7 +60,7 @@ class Layer(plone.testing.Layer):
     def tearDown(self):
         self.shutdown()
         self['httpd_thread'].join(5)
-        if self['httpd_thread'].isAlive():
+        if self['httpd_thread'].is_alive():
             raise RuntimeError('WSGI server could not be shut down')
         # make the server really go away and give up the socket
         del self['httpd']
