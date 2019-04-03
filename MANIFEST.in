@@ -1,8 +1,18 @@
 include *.rst
 include *.txt
+include .coveragerc
+include tox.ini
+
+include *.yml
+exclude bitbucket-pipelines.yml
+
+include .hgignore
+exclude .hgignore
+
+include .hgtags
+exclude .hgtags
+
+exclude MANIFEST.in
 
 recursive-include src *.txt *.zcml
-
-exclude .coveragerc
-exclude tox.ini
 
