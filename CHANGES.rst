@@ -8,6 +8,8 @@ Change log for gocept.httpserverlayer
 
 - Nothing changed yet.
 
+- Migrate to Github.
+
 
 3.2 (2019-04-03)
 ================

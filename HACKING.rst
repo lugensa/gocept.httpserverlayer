@@ -9,13 +9,13 @@ Developing gocept.httpserverlayer
     https://pypi.org/project/gocept.httpserverlayer/
 
 :Issue tracker:
-    https://bitbucket.org/gocept/gocept.httpserverlayer/issues
+    https://github.com/gocept/gocept.httpserverlayer/issues
 
 :Source code:
-    https://bitbucket.org/gocept/gocept.httpserverlayer/
+    https://github.com/gocept/gocept.httpserverlayer
 
 :Current change log:
-    https://bitbucket.org/gocept/gocept.httpserverlayer/raw/tip/CHANGES.txt
+    https://raw.githubusercontent.com/gocept/gocept.httpserverlayer/master/CHANGES.rst
 
 :Run tests:
     Use tox, for info see: https://pypi.org/project/tox/

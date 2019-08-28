@@ -31,7 +31,7 @@ setup(
     author='gocept <mail@gocept.com>',
     author_email='mail@gocept.com',
     license='ZPL 2.1',
-    url='https://bitbucket.org/gocept/gocept.httpserverlayer/',
+    url='https://github.com/gocept/gocept.httpserverlayer',
 
     keywords='HTTP server Plone testing zope.testrunner layer Zope',
     classifiers="""\
