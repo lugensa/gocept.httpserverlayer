@@ -45,7 +45,7 @@ jobs:
       run: tox -e ${{ matrix.config[1] }}-${{ matrix.flavour }}
     - name: Report to coveralls
       run: |
-        pip install coverage coveralls
+        pip install coverage "coveralls>=3"
         coverage combine
         coveralls --service=github
       env:
