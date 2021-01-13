@@ -1,7 +1,4 @@
-try:
-    import BaseHTTPServer as http_server
-except ImportError:
-    import http.server as http_server
+import http.server as http_server
 import plone.testing
 import threading
 import time
@@ -14,7 +11,7 @@ class Layer(plone.testing.Layer):
     port = 0  # choose automatically
 
     def __init__(self, request_handler=None, *args, **kw):
-        super(Layer, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         self.request_handler = request_handler
 
     def setUp(self):
@@ -31,7 +28,7 @@ class Layer(plone.testing.Layer):
         port = self['httpd'].server_port
         self['http_host'] = self.host
         self['http_port'] = port
-        self['http_address'] = '%s:%s' % (self.host, port)
+        self['http_address'] = f'{self.host}:{port}'
 
         # XXX copy&paste from gocept.httpserverlayer.wsgi
         orig_flush = self['_orig_handler_flush'] = (

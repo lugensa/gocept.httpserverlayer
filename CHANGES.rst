@@ -3,8 +3,10 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-3.3 (unreleased)
+4.0 (unreleased)
 ================
+
+- Drop support for Python 2.
 
 - Migrate to GitHub and GitHub Actions.
 

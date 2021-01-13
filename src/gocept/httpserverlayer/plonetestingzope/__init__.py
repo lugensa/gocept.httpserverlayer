@@ -12,7 +12,7 @@ class Layer(plone.testing.Layer):
                     plone.testing.zope.FUNCTIONAL_TESTING)
 
     def __init__(self, *args, **kw):
-        super(Layer, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         plone.testing.zope.WSGI_SERVER_FIXTURE.host = self.host
         plone.testing.zope.WSGI_SERVER_FIXTURE.port = self.port
 

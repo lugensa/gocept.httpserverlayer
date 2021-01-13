@@ -11,7 +11,7 @@ class Runner(zope.testrunner.runner.Runner):
     """Customized test runner."""
 
     def configure(self):
-        super(Runner, self).configure()
+        super().configure()
         self.features.append(feature.JUnitXMLSupport(self))
 
 

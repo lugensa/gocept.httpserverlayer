@@ -1,10 +1,7 @@
+from urllib.request import urlopen
 import gocept.httpserverlayer.static
 import os
 import unittest
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
 
 
 class TestStaticFiles(unittest.TestCase):

@@ -1,16 +1,9 @@
+from urllib.request import urlopen
 import gocept.httpserverlayer.wsgi
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib import urlopen
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 
-class SimpleApp(object):
+class SimpleApp:
 
     def __call__(self, environ, start_response):
         path = environ['PATH_INFO']

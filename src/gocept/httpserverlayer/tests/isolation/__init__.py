@@ -1,12 +1,10 @@
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib import urlopen
+from urllib.request import urlopen
+
 
 ENSURE_ORDER = False
 
 
-class IsolationTests(object):
+class IsolationTests:
     """NOTE: Subclasses need to implement getRootFolder() and getDatabase().
     """
 

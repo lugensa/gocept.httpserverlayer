@@ -1,17 +1,11 @@
-try:
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
-except ImportError:
-    from http.server import SimpleHTTPRequestHandler
+from http.server import SimpleHTTPRequestHandler
+from urllib.parse import unquote
 import gocept.httpserverlayer.custom
 import os
 import os.path
 import posixpath
 import shutil
 import tempfile
-try:
-    from urllib.parse import unquote
-except ImportError:
-    from urllib import unquote
 
 
 class StaticFileRequestHandler(
@@ -55,7 +49,7 @@ TEMPORARY = object()
 class Layer(gocept.httpserverlayer.custom.Layer):
 
     def __init__(self, documentroot=TEMPORARY, *args, **kw):
-        super(Layer, self).__init__(StaticFileRequestHandler, *args, **kw)
+        super().__init__(StaticFileRequestHandler, *args, **kw)
         self.documentroot = documentroot
 
     def setUp(self):
@@ -65,16 +59,16 @@ class Layer(gocept.httpserverlayer.custom.Layer):
                 suffix='gocept.httpserverlayer.static')
         self['documentroot'] = documentroot
         self.request_handler.documentroot = self['documentroot']
-        super(Layer, self).setUp()
+        super().setUp()
 
     def tearDown(self):
-        super(Layer, self).tearDown()
+        super().tearDown()
         if self.documentroot is TEMPORARY:
             shutil.rmtree(self['documentroot'])
         del self['documentroot']
 
     def testSetUp(self):
-        super(Layer, self).testSetUp()
+        super().testSetUp()
         paths = os.listdir(self['documentroot'])
         for path in paths:
             fullpath = os.path.join(self['documentroot'], path)
