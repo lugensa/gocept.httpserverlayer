@@ -18,7 +18,7 @@ class Layer(plone.testing.Layer):
     request_handler_class = LogWSGIRequestHandler
 
     def __init__(self, *args, **kw):
-        super(Layer, self).__init__(*args, **kw)
+        super().__init__(*args, **kw)
         self.wsgi_app = None
 
     @property
@@ -39,7 +39,7 @@ class Layer(plone.testing.Layer):
         port = self['httpd'].server_port
         self['http_host'] = self.host
         self['http_port'] = port
-        self['http_address'] = '%s:%s' % (self.host, port)
+        self['http_address'] = f'{self.host}:{port}'
         self['httpd'].set_app(self.wsgi_app)
         self['httpd_thread'] = threading.Thread(target=self.serve)
         self['httpd_thread'].daemon = True
@@ -81,7 +81,7 @@ class Layer(plone.testing.Layer):
         self['httpd'].server_close()
 
 
-class FixupMiddleware(object):
+class FixupMiddleware:
     """Fix problems between WSGI server and middlewares."""
 
     def __init__(self, app):

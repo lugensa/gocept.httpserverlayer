@@ -3,12 +3,12 @@ Change log for gocept.httpserverlayer
 =====================================
 
 
-3.3 (unreleased)
+4.0 (unreleased)
 ================
 
-- Nothing changed yet.
+- Drop support for Python 2.
 
-- Migrate to Github.
+- Migrate to GitHub and GitHub Actions.
 
 
 3.2 (2019-04-03)

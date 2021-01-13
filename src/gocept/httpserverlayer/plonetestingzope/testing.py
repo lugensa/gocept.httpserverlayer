@@ -22,7 +22,7 @@ HTTP_LAYER = plone.testing.Layer(
     bases=(ZOPE_LAYER, gocept.httpserverlayer.plonetestingzope.HTTP_SERVER))
 
 
-class IsolationTestHelper(object):
+class IsolationTestHelper:
     """
     plone.testing implementation of methods needed by common isolation tests
     """

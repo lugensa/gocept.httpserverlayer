@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gocept.httpserverlayer',
-    version='3.3.dev0',
+    version='4.0.dev0',
 
     install_requires=[
         'setuptools',
@@ -38,12 +38,12 @@ setup(
 Development Status :: 5 - Production/Stable
 Framework :: Zope :: 3
 Framework :: Zope :: 4
+Framework :: Zope :: 5
 Intended Audience :: Developers
 License :: OSI Approved :: Zope Public License
 Operating System :: OS Independent
-Programming Language :: Python :: 2
-Programming Language :: Python :: 2.7
 Programming Language :: Python :: 3
+Programming Language :: Python :: 3 :: Only
 Programming Language :: Python :: 3.6
 Programming Language :: Python :: 3.7
 Programming Language :: Python :: Implementation :: CPython
