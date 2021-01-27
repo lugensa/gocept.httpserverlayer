@@ -1,5 +1,5 @@
-import gocept.httpserverlayer.tests.isolation
 from gocept.httpserverlayer.zopeappwsgi.testing import ZODB_LAYER
+import gocept.httpserverlayer.tests.isolation
 import unittest
 
 

@@ -1,4 +1,5 @@
-from wsgiref.simple_server import WSGIServer, WSGIRequestHandler
+from wsgiref.simple_server import WSGIRequestHandler
+from wsgiref.simple_server import WSGIServer
 import os
 import plone.testing
 import threading
