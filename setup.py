@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='gocept.httpserverlayer',
-    version='4.0',
+    version='4.1.dev0',
 
     install_requires=[
         'setuptools',
