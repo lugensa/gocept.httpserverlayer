@@ -26,6 +26,10 @@ repos:
       - id: isort
         args: [--filter-files]
         files: \.py$
+    - repo: https://github.com/mgedmin/check-manifest
+      rev: "0.46"
+      hooks:
+      - id: check-manifest
     - repo: local
       hooks:
           - id: rst
