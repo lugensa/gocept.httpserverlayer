@@ -16,7 +16,7 @@ and exposes the following resources (accessible in your test case as
 :http_address: ``hostname:port``, convenient to use in URLs
    (e.g. ``'http://user:password@%s/path' % self.layer['http_address']``)
 
-This package is compatible with Python version 3.6 and 3.7.
+This package is compatible with Python version 3.6, 3.7, 3.8, and 3.9.
 
 .. _`test layers`: https://pypi.org/project/plone.testing/#layers
 .. _`zope.testrunner`: https://pypi.org/project/zope.testrunner/

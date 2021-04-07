@@ -8,6 +8,8 @@ Change log for gocept.httpserverlayer
 
 - Drop support for Python 2.
 
+- Add support for Python 3.8 and 3.9.
+
 - Migrate to GitHub and GitHub Actions.
 
 
