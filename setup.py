@@ -35,24 +35,24 @@ setup(
     url='https://github.com/gocept/gocept.httpserverlayer',
 
     keywords='HTTP server Plone testing zope.testrunner layer Zope',
-    classifiers="""\
-Development Status :: 5 - Production/Stable
-Framework :: Zope :: 3
-Framework :: Zope :: 4
-Framework :: Zope :: 5
-Intended Audience :: Developers
-License :: OSI Approved :: Zope Public License
-Operating System :: OS Independent
-Programming Language :: Python :: 3
-Programming Language :: Python :: 3 :: Only
-Programming Language :: Python :: 3.6
-Programming Language :: Python :: 3.7
-Programming Language :: Python :: 3.8
-Programming Language :: Python :: 3.9
-Programming Language :: Python :: Implementation :: CPython
-Topic :: Internet :: WWW/HTTP :: HTTP Servers
-Topic :: Software Development :: Testing
-"""[:-1].split('\n'),
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Framework :: Zope :: 3',
+        'Framework :: Zope :: 4',
+        'Framework :: Zope :: 5',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Zope Public License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Topic :: Internet :: WWW/HTTP :: HTTP Servers',
+        'Topic :: Software Development :: Testing',
+    ],
     description='HTTP server integration for testing',
     long_description='\n\n'.join(open(name).read() for name in (
         'README.rst',

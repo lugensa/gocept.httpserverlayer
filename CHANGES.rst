@@ -6,7 +6,9 @@ Change log for gocept.httpserverlayer
 4.1 (unreleased)
 ================
 
-- Nothing changed yet.
+- Drop support for Python 3.6.
+
+- Add support for Python 3.10, 3.11.
 
 
 4.0 (2021-04-07)
